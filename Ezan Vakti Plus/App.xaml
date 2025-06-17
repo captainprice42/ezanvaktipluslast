@@ -1,0 +1,8 @@
+﻿<Application x:Class="Ezan_Vakti_Plus.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DropShadowEffect x:Key="JetShadow" ShadowDepth="0" BlurRadius="15" Color="Black" Opacity="0.6"/>
+    </Application.Resources>
+</Application>

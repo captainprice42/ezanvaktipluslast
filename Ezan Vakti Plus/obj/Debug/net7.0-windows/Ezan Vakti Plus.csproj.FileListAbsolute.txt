@@ -1,0 +1,41 @@
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\Ezan Vakti Plus.exe
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\Ezan Vakti Plus.deps.json
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\Ezan Vakti Plus.runtimeconfig.json
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\Ezan Vakti Plus.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\Ezan Vakti Plus.pdb
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\MainWindow.baml
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus_MarkupCompile.cache
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.g.resources
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.AssemblyInfoInputs.cache
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.AssemblyInfo.cs
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.csproj.CoreCompileInputs.cache
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\refint\Ezan Vakti Plus.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.pdb
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.genruntimeconfig.cache
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\ref\Ezan Vakti Plus.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\Mono.WebBrowser.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-arm\lib\netstandard2.0\Mono.Posix.NETStandard.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-arm\native\libMonoPosixHelper.so
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-arm64\lib\netstandard2.0\Mono.Posix.NETStandard.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-arm64\native\libMonoPosixHelper.so
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-armel\lib\netstandard2.0\Mono.Posix.NETStandard.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-armel\native\libMonoPosixHelper.so
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-x64\lib\netstandard2.0\Mono.Posix.NETStandard.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-x64\native\libMonoPosixHelper.so
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-x86\lib\netstandard2.0\Mono.Posix.NETStandard.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\linux-x86\native\libMonoPosixHelper.so
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\osx\lib\netstandard2.0\Mono.Posix.NETStandard.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\osx\native\libMonoPosixHelper.dylib
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\win-x64\lib\netstandard2.0\Mono.Posix.NETStandard.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\win-x64\native\MonoPosixHelper.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\win-x64\native\libMonoPosixHelper.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\win-x86\lib\netstandard2.0\Mono.Posix.NETStandard.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\win-x86\native\MonoPosixHelper.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\runtimes\win-x86\native\libMonoPosixHelper.dll
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.csproj.AssemblyReference.cache
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\App.baml
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vak.3703179F.Up2Date
