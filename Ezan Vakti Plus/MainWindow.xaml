@@ -1,59 +1,85 @@
 ﻿<Window x:Class="Ezan_Vakti_Plus.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Ezan Vakti Plus" Height="600" Width="400"
+        Title="Ezan Vakti Plus"
+        Height="600" Width="400"
         Background="#121212"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         FontFamily="Segoe UI">
 
     <Window.Resources>
-        <!-- Buton Aktif Stili -->
-        <Style x:Key="ActiveButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#FFDD6F00"/>
+        <SolidColorBrush x:Key="JetOrange" Color="#FFDD6F00"/>
+        <SolidColorBrush x:Key="JetPassive" Color="Transparent"/>
+        <DropShadowEffect x:Key="btnShadow" ShadowDepth="0" BlurRadius="10" Opacity="0.4"/>
+
+        <Style x:Key="JetButtonStyle" TargetType="Button" BasedOn="{x:Null}">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="8,4"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="root" CornerRadius="22"
+                                Background="{TemplateBinding Background}"
+                                Effect="{DynamicResource btnShadow}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="root" Property="Opacity" Value="0.85"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
-        <!-- Buton Pasif Stili -->
-        <Style x:Key="InactiveButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
+        <Style x:Key="ActiveButtonStyle" TargetType="Button" BasedOn="{StaticResource JetButtonStyle}">
+            <Setter Property="Background" Value="{StaticResource JetOrange}"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderBrush" Value="#FFDD6F00"/>
-            <Setter Property="Cursor" Value="Hand"/>
         </Style>
 
-        <!-- Fade Animasyonları -->
+        <Style x:Key="InactiveButtonStyle" TargetType="Button" BasedOn="{StaticResource JetButtonStyle}">
+            <Setter Property="Background" Value="{StaticResource JetPassive}"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
         <Storyboard x:Key="FadeOutStoryboard">
-            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3" />
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"/>
         </Storyboard>
 
         <Storyboard x:Key="FadeInStoryboard">
-            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5" />
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.5"/>
         </Storyboard>
     </Window.Resources>
 
     <Grid Margin="15">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>   <!-- Başlık -->
-            <RowDefinition Height="40"/>     <!-- Kayan Yazı -->
-            <RowDefinition Height="Auto"/>   <!-- Butonlar -->
-            <RowDefinition Height="*"/>      <!-- Namaz Vakitleri -->
-            <RowDefinition Height="Auto"/>   <!-- Geri Sayım -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Başlık -->
-        <TextBlock Text="Ezan Vakti Plus" FontSize="36" FontWeight="Bold" Foreground="#FFFFA500" 
-                   HorizontalAlignment="Center" Margin="0,15,0,5" />
+        <TextBlock Text="Ezan Vakti Plus"
+                   FontSize="36" FontWeight="Bold"
+                   Foreground="#FFFFA500"
+                   HorizontalAlignment="Center"
+                   Margin="0,15,0,5"/>
 
-        <!-- Kayan Yazı (Marquee) ve Dönen Başlık -->
-        <Grid Grid.Row="1" Height="30" ClipToBounds="True" Cursor="Hand" MouseLeftButtonDown="MarqueeText_MouseLeftButtonDown">
+        <!-- Marquee -->
+        <Grid Grid.Row="1" Height="30" ClipToBounds="True"
+              Cursor="Hand" MouseLeftButtonDown="MarqueeText_MouseLeftButtonDown">
             <Canvas x:Name="marqueeCanvas" Height="30" VerticalAlignment="Center">
-                <TextBlock x:Name="marqueeText" Text="Ezan Vakti Plus İyi Günler Diler"
+                <TextBlock x:Name="marqueeText"
+                           Text="Ezan Vakti Plus İyi Günler Diler"
                            Foreground="#FFFFA500" FontWeight="Bold" FontSize="18"
                            RenderTransformOrigin="0.5,0.5">
                     <TextBlock.RenderTransform>
@@ -64,17 +90,21 @@
         </Grid>
 
         <!-- İlçe Butonları -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,20" >
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,20">
             <Button x:Name="btnKaratay" Content="Karatay" Width="140" Height="45" Margin="8"
-                    Style="{StaticResource ActiveButtonStyle}" Click="btnKaratay_Click"/>
+                    Style="{StaticResource JetButtonStyle}"
+                    Background="{StaticResource JetOrange}"
+                    Click="btnKaratay_Click"/>
             <Button x:Name="btnMeram" Content="Meram" Width="140" Height="45" Margin="8"
-                    Style="{StaticResource InactiveButtonStyle}" Click="btnMeram_Click"/>
+                    Style="{StaticResource JetButtonStyle}"
+                    Background="{StaticResource JetPassive}"
+                    Foreground="White"
+                    Click="btnMeram_Click"/>
         </StackPanel>
 
-        <!-- Namaz Vakitleri -->
-        <!-- Namaz vakitleri için arka plan ve köşe yuvarlama Border içinde -->
-        <Border Grid.Row="3" Background="#FF212121" CornerRadius="10" Padding="10" >
-            <StackPanel x:Name="timesPanel" Opacity="1">
+        <!-- Namaz Vakitleri Kartı -->
+        <Border Grid.Row="3" Background="#FF212121" CornerRadius="10" Padding="10">
+            <StackPanel x:Name="timesPanel">
                 <TextBlock x:Name="imsakLabel" Text="İmsak: --:--" FontSize="22" Margin="0,6" FontWeight="SemiBold" Foreground="White"/>
                 <TextBlock x:Name="gunesLabel" Text="Güneş: --:--" FontSize="22" Margin="0,6" FontWeight="SemiBold" Foreground="White"/>
                 <TextBlock x:Name="ogleLabel" Text="Öğle: --:--" FontSize="22" Margin="0,6" FontWeight="SemiBold" Foreground="White"/>
@@ -84,13 +114,12 @@
             </StackPanel>
         </Border>
 
-
         <!-- Geri Sayım -->
         <TextBlock Grid.Row="4" x:Name="countdownLabel"
-                   Text="Sonraki ezana kalan süre: --:--:--"
+                   Text="Sonraki ezana kalan süre: --:--"
                    FontSize="24" FontWeight="Bold"
                    Foreground="#FFFFA500"
                    HorizontalAlignment="Center"
-                   Margin="0,20,0,10" />
+                   Margin="0,20,0,10"/>
     </Grid>
 </Window>

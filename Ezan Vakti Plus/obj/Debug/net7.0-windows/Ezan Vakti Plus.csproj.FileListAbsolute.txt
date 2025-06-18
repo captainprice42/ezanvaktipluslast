@@ -39,3 +39,7 @@ C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-
 C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.csproj.AssemblyReference.cache
 C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\App.baml
 C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vak.3703179F.Up2Date
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\obj\Debug\net7.0-windows\Ezan Vakti Plus.sourcelink.json
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\icon.ico
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\Ses\bildirim.wav
+C:\Users\destr\RiderProjects\ezanvaktipluslast\Ezan Vakti Plus\bin\Debug\net7.0-windows\Microsoft.Toolkit.Uwp.Notifications.dll

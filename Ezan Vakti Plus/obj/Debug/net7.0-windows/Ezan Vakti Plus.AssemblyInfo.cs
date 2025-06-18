@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ezan Vakti Plus")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51bff73973cd96bd0af0b2583b64104a885e0611")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ezan Vakti Plus")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ezan Vakti Plus")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,16 +1,46 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFramework>net7.0-windows</TargetFramework>
-        <RootNamespace>Ezan_Vakti_Plus</RootNamespace>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <UseWPF>true</UseWPF>
-    </PropertyGroup>
+  <PropertyGroup>
+  <ApplicationIcon>icon.ico</ApplicationIcon>
 
-    <ItemGroup>
-      <PackageReference Include="Core.System.Windows.Forms" Version="1.0.0-alpha7" />
-    </ItemGroup>
+    <OutputType>WinExe</OutputType>
+
+    <TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
+
+    <RootNamespace>Ezan_Vakti_Plus</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+
+  <OutputType>WinExe</OutputType>
+  <TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
+  <RootNamespace>Ezan_Vakti_Plus</RootNamespace>
+  <Nullable>enable</Nullable>
+  <ImplicitUsings>enable</ImplicitUsings>
+  <UseWPF>true</UseWPF>
+  <EnableWindowsTargeting>true</EnableWindowsTargeting>
+
+  <!-- İşte versiyon numaran burada -->
+  <Version>1.1.0</Version>  
+
+
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.3" />
+
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Ses\bildirim.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

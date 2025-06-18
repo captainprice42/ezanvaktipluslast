@@ -5,7 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using System.Windows.Input;
-using System.Media;  // Ses için
+using System.Media;
+using System.Windows.Media; // Ses için
 
 namespace Ezan_Vakti_Plus
 {
@@ -80,6 +81,11 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
 };
 
 
+        private readonly Brush activeBackground = new SolidColorBrush(Color.FromRgb(221, 111, 0)); // Turuncu
+        private readonly Brush activeForeground = Brushes.White;
+        private readonly Brush inactiveBackground = Brushes.Transparent;
+        private readonly Brush inactiveForeground = Brushes.White;
+ 
         private Dictionary<int, string[]> currentVakitler;
         private Button currentActiveButton;
 
@@ -92,10 +98,12 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
 
         private bool notificationPlayedForIkindi = false;
 
+
         public MainWindow()
         {
+            
             InitializeComponent();
-
+            
             currentVakitler = KaratayVakitleri;
             currentActiveButton = btnKaratay;
 
@@ -121,13 +129,23 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
 
         private void UpdateButtonStyles()
         {
-            btnKaratay.Style = currentActiveButton == btnKaratay
-                ? (Style)FindResource("ActiveButtonStyle")
-                : (Style)FindResource("InactiveButtonStyle");
+            // Karatay butonu aktifse
+            if (currentActiveButton == btnKaratay)
+            {
+                btnKaratay.Background = activeBackground;
+                btnKaratay.Foreground = activeForeground;
 
-            btnMeram.Style = currentActiveButton == btnMeram
-                ? (Style)FindResource("ActiveButtonStyle")
-                : (Style)FindResource("InactiveButtonStyle");
+                btnMeram.Background = inactiveBackground;
+                btnMeram.Foreground = inactiveForeground;
+            }
+            else // Meram aktifse
+            {
+                btnMeram.Background = activeBackground;
+                btnMeram.Foreground = activeForeground;
+
+                btnKaratay.Background = inactiveBackground;
+                btnKaratay.Foreground = inactiveForeground;
+            }
         }
 
         private void btnKaratay_Click(object sender, RoutedEventArgs e)
@@ -216,29 +234,40 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
                 return;
             }
 
-            // İkindi vakti zamanı
-            if (TimeSpan.TryParse(vakitler[3], out TimeSpan ikindiTime))
+            // Namaz vakitleri sırasıyla: 0:İmsak, 1:Güneş, 2:Öğle, 3:İkindi, 4:Akşam, 5:Yatsı (örnek dizi)
+            string[] namazlar = { "İmsak", "Güneş", "Öğle", "İkindi", "Akşam", "Yatsı" };
+            bool notificationPlayed = false;
+
+            for (int i = 0; i < vakitler.Length; i++)
             {
-                var ikindiDateTime = now.Date + ikindiTime;
-                var diff = ikindiDateTime - now;
-
-                if (diff.TotalSeconds > 0)
+                if (TimeSpan.TryParse(vakitler[i], out TimeSpan namazTime))
                 {
-                    countdownLabel.Text = $"İkindi'ye kalan süre: {diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}";
+                    var namazDateTime = now.Date + namazTime;
+                    var diff = namazDateTime - now;
 
-                    if (diff.TotalMinutes <= 15 && !notificationPlayedForIkindi)
+                    if (diff.TotalSeconds > 0)
                     {
-                        notificationPlayedForIkindi = true;
-                        PlayNotificationSound();
+                        countdownLabel.Text = $"{namazlar[i]}'ye kalan süre: {diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}";
+
+                        // 15 dakikadan az kaldıysa ve bildirim oynatılmadıysa
+                        if (diff.TotalMinutes <= 15 && !notificationPlayed)
+                        {
+                            notificationPlayed = true;
+                            PlayNotificationSound();
+                        }
+
+                        break; // İlk bulunana gösterip döngüyü kırıyoruz
                     }
                 }
-                else
-                {
-                    countdownLabel.Text = "İkindi vakti geçti.";
-                    notificationPlayedForIkindi = false; // Ertesi gün için reset
-                }
+            }
+
+            // Eğer tüm vakitler geçmişse
+            if (!notificationPlayed && countdownLabel.Text == "")
+            {
+                countdownLabel.Text = "Bugünkü namaz vakitleri tamamlandı.";
             }
         }
+
 
         private void PlayNotificationSound()
         {

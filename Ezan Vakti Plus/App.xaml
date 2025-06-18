@@ -4,5 +4,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <DropShadowEffect x:Key="JetShadow" ShadowDepth="0" BlurRadius="15" Color="Black" Opacity="0.6"/>
+        
     </Application.Resources>
 </Application>
+
