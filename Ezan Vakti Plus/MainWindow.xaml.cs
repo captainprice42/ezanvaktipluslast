@@ -80,7 +80,8 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
     {30, new string[] {"03:35", "05:23", "12:59", "16:51", "20:24", "22:04"} }
 };
 
-
+        
+        private int lastNotifiedIndex = -1;
         private readonly Brush activeBackground = new SolidColorBrush(Color.FromRgb(221, 111, 0)); // Turuncu
         private readonly Brush activeForeground = Brushes.White;
         private readonly Brush inactiveBackground = Brushes.Transparent;
@@ -222,60 +223,67 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
             countdownTimer.Tick += CountdownTimer_Tick;
             countdownTimer.Start();
         }
-
+        
+        
+        
+        
+        
+       
+        
+        
+        
+        
+        
+        
         private void CountdownTimer_Tick(object sender, EventArgs e)
         {
             var now = DateTime.Now;
-            var vakitler = currentVakitler.ContainsKey(now.Day) ? currentVakitler[now.Day] : null;
-
-            if (vakitler == null)
+            if (!currentVakitler.TryGetValue(now.Day, out var vakitler))
             {
                 countdownLabel.Text = "Namaz vakitleri bulunamadı.";
                 return;
             }
 
-            // Namaz vakitleri sırasıyla: 0:İmsak, 1:Güneş, 2:Öğle, 3:İkindi, 4:Akşam, 5:Yatsı (örnek dizi)
             string[] namazlar = { "İmsak", "Güneş", "Öğle", "İkindi", "Akşam", "Yatsı" };
-            bool notificationPlayed = false;
 
             for (int i = 0; i < vakitler.Length; i++)
             {
-                if (TimeSpan.TryParse(vakitler[i], out TimeSpan namazTime))
+                if (!TimeSpan.TryParse(vakitler[i], out var namazTime)) continue;
+
+                var namazDateTime = now.Date + namazTime;
+                var diff = namazDateTime - now;
+
+                if (diff.TotalSeconds > 0)
                 {
-                    var namazDateTime = now.Date + namazTime;
-                    var diff = namazDateTime - now;
+                    countdownLabel.Text =
+                        $"{namazlar[i]}'ye kalan süre: {diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}";
 
-                    if (diff.TotalSeconds > 0)
+                    // 15 dk içinde ve henüz o namaz için çalınmadıysa
+                    if (diff.TotalMinutes <= 15 && lastNotifiedIndex != i)
                     {
-                        countdownLabel.Text = $"{namazlar[i]}'ye kalan süre: {diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}";
-
-                        // 15 dakikadan az kaldıysa ve bildirim oynatılmadıysa
-                        if (diff.TotalMinutes <= 15 && !notificationPlayed)
-                        {
-                            notificationPlayed = true;
-                            PlayNotificationSound();
-                        }
-
-                        break; // İlk bulunana gösterip döngüyü kırıyoruz
+                        PlayNotificationSound();
+                        lastNotifiedIndex = i;           // Aynı vakit için tekrar çalınmasını engelle
                     }
+                    return;  // Gelecek ilk vakti bulduk, döngüden çık
                 }
             }
 
-            // Eğer tüm vakitler geçmişse
-            if (!notificationPlayed && countdownLabel.Text == "")
-            {
-                countdownLabel.Text = "Bugünkü namaz vakitleri tamamlandı.";
-            }
+            // Günün tüm vakitleri geçtiyse bayrağı sıfırla
+            countdownLabel.Text = "Bugünkü namaz vakitleri tamamlandı.";
+            lastNotifiedIndex = -1;
         }
 
 
-        private void PlayNotificationSound()
+
+        private async void PlayNotificationSound()
         {
             if (notificationSound != null)
             {
                 try
                 {
-                    notificationSound.Play();
+                    notificationSound.PlaySync();
+                    await Task.Delay(1000);
+                    notificationSound.Stop();
                 }
                 catch
                 {
