@@ -118,29 +118,7 @@ Bu belge, Ezan Vakti Plus uygulamasındaki tüm önemli değişiklikleri, yeni �
 * 🎨 **Theme and Dark Mode Enhancements**: Adaptive dark mode and customizable color themes will be added.
 * ⚙️ **Performance and Resource Management Optimization**: Background processes will be optimized to reduce resource consumption.
 
----
-
 ## 📦 v1.5 – 2025-06-20
-
-### 🇹🇷 Türkçe
-
-* ⚙️ **Ayarlar Simgesi Aşağı Taşındı**: Daha sade ve tutarlı bir arayüz için ayarlar simgesi alt menüye alındı.
-* 🔊 **Namaz Bildirim Sesleri Kişiselleştirildi**: Her bir namaz vakti için farklı `.wav` dosyası atanabilir hale getirildi.
-* 📦 **Yedekleme / Geri Yükleme Sistemi**: Ayarlar `settings.json` dosyasıyla kolayca dışa aktarılıp içe aktarılabilir oldu.
-* 🔒 **Gizlilik Modu**: Ekran kapalıyken bildirimler sessize alınabilir veya sadece log’a kaydedilir.
-* 📡 **Çevrimdışı Mod**: İnternet bağlantısı olmadan önceden çekilmiş verilerle uygulama çalışmaya devam eder.
-
-### 🇬🇧 English
-
-* ⚙️ **Settings Icon Relocation**: The settings icon was moved to a cleaner, more consistent bottom menu.
-* 🔊 **Custom Notification Sounds Per Prayer**: Different `.wav` files can now be assigned for each prayer notification.
-* 📦 **Backup / Restore System**: Settings can be easily exported and imported via `settings.json`.
-* 🔒 **Privacy Mode**: Notifications are muted or silently logged when the screen is off.
-* 📡 **Offline Mode**: The app continues functioning with cached data when offline.
-
----
-
-## 📦 v1.6 – 2025-06-XX
 
 ### 🇹🇷 Türkçe
 
