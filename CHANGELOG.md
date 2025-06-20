@@ -76,58 +76,40 @@ Bu belge, Ezan Vakti Plus uygulamasındaki tüm önemli değişiklikleri, yeni �
 * 🔒 **Privacy Mode**: Mutes alerts when the screen is off or logs silently.
 * 📡 **Offline Mode**: App will function using cached data if no connection is available.
 
-## 📦 **v1.4 – 2025-06-20** (Tamamlandı)
+## 📦 v1.4 – 2025-06-20
 
 ### 🇹🇷 Türkçe
 
-* ⚙️ Ayarlar Simgesi Alta Taşındı
-* 🔊 Namaz Bildirim Sesleri Özelleştirildi
-* 📦 Ayarları Dışa Aktar / Geri Yükle Eklendi
-* 🔒 Gizlilik Modu Aktif Edildi
-* 📡 Çevrimdışı Mod Aktif Edildi
+* ⚙️ **Ayarlar Simgesi Alta Taşındı**: Daha sade ve kullanışlı bir arayüz için ayarlar simgesi alt bara konumlandırıldı.
+* 🔊 **Namaz Bildirim Sesleri Özelleştirildi**: Her namaz vakti için farklı `.wav` dosyaları atanabilir hale geldi.
+* 📦 **Ayarları Dışa Aktar / Geri Yükle**: `settings.json` dosyasıyla kullanıcı ayarları kolayca yedeklenip geri yüklenebilir oldu.
+* 🔒 **Gizlilik Modu**: Ekran kapalıyken bildirimler sessize alınabilir veya sadece log’a yazılabilir.
+* 📡 **Çevrimdışı Mod**: İnternet bağlantısı yokken uygulama önceden çekilmiş verilerle çalışmaya devam eder.
 
 ### 🇬🇧 English
 
-* ⚙️ Settings Icon Moved to Bottom Bar
-* 🔊 Per-Prayer Notification Sounds Customizable
-* 📦 Export / Import Settings Implemented
-* 🔒 Privacy Mode Enabled
-* 📡 Offline Mode Enabled
+* ⚙️ **Settings Icon Moved to Bottom Bar**: Settings icon relocated to the bottom bar for a cleaner UI.
+* 🔊 **Per-Prayer Notification Sounds Customizable**: Different `.wav` files can be assigned to each prayer notification.
+* 📦 **Export / Import Settings**: User settings can be backed up and restored easily via a `settings.json` file.
+* 🔒 **Privacy Mode**: Notifications are muted or silently logged when the screen is off.
+* 📡 **Offline Mode**: The app continues functioning with cached data when offline.
 
 ---
 
-## 🔭 **Gelecek Sürüm (v1.5 Planları)**
+## 🔭 Gelecek Sürüm (v1.5 Planları)
 
 ### 🇹🇷 Türkçe
 
-1. 🌐 **Çoklu Dil Desteği (Localization)**
-   Kullanıcı arayüzü için dil paketleri eklenecek, kolayca başka diller seçilebilecek.
-
-2. ⏰ **Bildirim Hatırlatma Özelliği**
-   Namaz vakti bildirimi sonrası kullanıcı isteğine bağlı tekrar hatırlatma opsiyonu eklenecek.
-
-3. 📊 **Bildirim ve Aktivite Geçmişi**
-   Kullanıcı, kaçırdığı veya aldığı bildirimleri uygulama içinde görebilecek.
-
-4. 🎨 **Kullanıcı Teması ve Karanlık Mod Geliştirmeleri**
-   Renk temaları eklenecek, otomatik karanlık mod desteği sunulacak.
-
-5. ⚙️ **Performans Optimizasyonu ve Kaynak Yönetimi**
-   Arka plan işlemleri optimize edilip hafıza ve CPU kullanımı azaltılacak.
+* 🌐 **Çoklu Dil Desteği (Localization)**: Kullanıcı arayüzü çoklu dil paketleriyle desteklenecek, kolayca dil değiştirilebilecek.
+* ⏰ **Bildirim Hatırlatma Özelliği**: Kaçırılan namaz vakti bildirimleri için tekrar hatırlatma seçeneği eklenecek.
+* 📊 **Bildirim ve Aktivite Geçmişi**: Kullanıcı uygulama içinden geçmiş bildirimleri ve kaçırılan vakitleri görüntüleyebilecek.
+* 🎨 **Tema ve Karanlık Mod Geliştirmeleri**: Otomatik karanlık mod ve özelleştirilebilir renk temaları eklenecek.
+* ⚙️ **Performans ve Kaynak Yönetimi Optimizasyonu**: Arka plan işlemleri optimize edilerek kaynak kullanımı azaltılacak.
 
 ### 🇬🇧 English
 
-1. 🌐 **Multi-Language Support (Localization)**
-   Language packs added for easy switching between multiple languages.
-
-2. ⏰ **Notification Reminder Feature**
-   Option to repeat prayer notifications after a set time if missed.
-
-3. 📊 **Notification & Activity History**
-   Users can view past notifications and missed alerts within the app.
-
-4. 🎨 **User Themes and Dark Mode Enhancements**
-   Additional color themes and adaptive dark mode support.
-
-5. ⚙️ **Performance Optimization and Resource Management**
-   Background processes optimized to reduce CPU and memory usage.
+* 🌐 **Multi-Language Support (Localization)**: The UI will support multiple language packs for easy switching.
+* ⏰ **Notification Reminder Feature**: Option to resend missed prayer notifications after a user-defined interval.
+* 📊 **Notification & Activity History**: Users will be able to view past and missed notifications within the app.
+* 🎨 **Theme and Dark Mode Enhancements**: Adaptive dark mode and customizable color themes will be added.
+* ⚙️ **Performance and Resource Management Optimization**: Background processes will be optimized to reduce resource consumption.
