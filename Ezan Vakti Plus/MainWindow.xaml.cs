@@ -380,7 +380,7 @@ namespace Ezan_Vakti_Plus
                 }
             }
 
-            countdownLabel.Text = "Bugünkü namaz vakitleri tamamlandı.";
+            countdownLabel.Text = "Allah kabul etsin.";
             lastNotifiedIndex = -1;
         }
 

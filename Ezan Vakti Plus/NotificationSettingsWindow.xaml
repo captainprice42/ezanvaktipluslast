@@ -225,16 +225,21 @@
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
-
-                <!-- Save Button -->
-                <Button Grid.Row="3"
-                        Content="Kaydet"
-                        Width="160"
-                        Height="46"
+                
+                <Button x:Name="SaveSettingsDifferentButton"
+                        Width="150" Height="34"
                         Style="{StaticResource JetButtonStyle}"
-                        HorizontalAlignment="Center"
-                        Margin="0,0,0,10"
-                        Click="SaveButton_Click"/>
+                        Click="SaveButton_Click"
+                        Grid.Row="3"
+                        HorizontalAlignment="Left" Grid.Column="0" Margin="0,0,6,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Kaydet" FontWeight="SemiBold" Foreground="White"/>
+                        <Image Source="pack://application:,,,/Resources/save.ico"
+                               Width="16" Height="16" Margin="6,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                
             </Grid>
         </Grid>
     </Border>

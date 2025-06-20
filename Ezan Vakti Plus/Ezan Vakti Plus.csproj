@@ -22,7 +22,7 @@
   <EnableWindowsTargeting>true</EnableWindowsTargeting>
 
   <!-- İşte versiyon numaran burada -->
-  <Version>1.4.0</Version>  
+  <Version>1.5.0</Version>  
 
 
 
@@ -56,6 +56,14 @@
     <Resource Include="Resources\settings.ico" />
     <None Remove="Resources\settings2.ico" />
     <Resource Include="Resources\settings2.ico" />
+    <None Remove="Resources\notification.ico" />
+    <Resource Include="Resources\notification.ico" />
+    <None Remove="Resources\load.ico" />
+    <Resource Include="Resources\load.ico" />
+    <None Remove="Resources\save.ico" />
+    <Resource Include="Resources\save.ico" />
+    <None Remove="Resources\check.ico" />
+    <Resource Include="Resources\check.ico" />
   </ItemGroup>
 
 </Project>
