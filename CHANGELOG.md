@@ -75,3 +75,59 @@ Bu belge, Ezan Vakti Plus uygulamasındaki tüm önemli değişiklikleri, yeni �
 * 📦 **Export / Import Settings**: Full backup and restore support using `settings.json`.
 * 🔒 **Privacy Mode**: Mutes alerts when the screen is off or logs silently.
 * 📡 **Offline Mode**: App will function using cached data if no connection is available.
+
+## 📦 **v1.4 – 2025-06-20** (Tamamlandı)
+
+### 🇹🇷 Türkçe
+
+* ⚙️ Ayarlar Simgesi Alta Taşındı
+* 🔊 Namaz Bildirim Sesleri Özelleştirildi
+* 📦 Ayarları Dışa Aktar / Geri Yükle Eklendi
+* 🔒 Gizlilik Modu Aktif Edildi
+* 📡 Çevrimdışı Mod Aktif Edildi
+
+### 🇬🇧 English
+
+* ⚙️ Settings Icon Moved to Bottom Bar
+* 🔊 Per-Prayer Notification Sounds Customizable
+* 📦 Export / Import Settings Implemented
+* 🔒 Privacy Mode Enabled
+* 📡 Offline Mode Enabled
+
+---
+
+## 🔭 **Gelecek Sürüm (v1.5 Planları)**
+
+### 🇹🇷 Türkçe
+
+1. 🌐 **Çoklu Dil Desteği (Localization)**
+   Kullanıcı arayüzü için dil paketleri eklenecek, kolayca başka diller seçilebilecek.
+
+2. ⏰ **Bildirim Hatırlatma Özelliği**
+   Namaz vakti bildirimi sonrası kullanıcı isteğine bağlı tekrar hatırlatma opsiyonu eklenecek.
+
+3. 📊 **Bildirim ve Aktivite Geçmişi**
+   Kullanıcı, kaçırdığı veya aldığı bildirimleri uygulama içinde görebilecek.
+
+4. 🎨 **Kullanıcı Teması ve Karanlık Mod Geliştirmeleri**
+   Renk temaları eklenecek, otomatik karanlık mod desteği sunulacak.
+
+5. ⚙️ **Performans Optimizasyonu ve Kaynak Yönetimi**
+   Arka plan işlemleri optimize edilip hafıza ve CPU kullanımı azaltılacak.
+
+### 🇬🇧 English
+
+1. 🌐 **Multi-Language Support (Localization)**
+   Language packs added for easy switching between multiple languages.
+
+2. ⏰ **Notification Reminder Feature**
+   Option to repeat prayer notifications after a set time if missed.
+
+3. 📊 **Notification & Activity History**
+   Users can view past notifications and missed alerts within the app.
+
+4. 🎨 **User Themes and Dark Mode Enhancements**
+   Additional color themes and adaptive dark mode support.
+
+5. ⚙️ **Performance Optimization and Resource Management**
+   Background processes optimized to reduce CPU and memory usage.
