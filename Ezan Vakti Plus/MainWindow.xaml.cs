@@ -43,7 +43,7 @@ namespace Ezan_Vakti_Plus
             { 17, new string[] { "03:32", "05:20", "12:56", "16:49", "20:21", "22:02" } },
             { 18, new string[] { "03:32", "05:21", "12:56", "16:49", "20:22", "22:02" } },
             { 19, new string[] { "03:32", "05:21", "12:56", "16:49", "20:22", "22:03" } },
-            { 20, new string[] { "03:32", "05:21", "12:57", "16:50", "20:22", "22:03" } },
+            { 20, new string[] { "03:32", "05:21", "12:57", "16:50", "20:22", "23:59" } },
             { 21, new string[] { "03:32", "05:21", "12:57", "16:50", "20:23", "22:03" } },
             { 22, new string[] { "03:32", "05:21", "12:57", "16:50", "20:23", "22:03" } },
             { 23, new string[] { "03:32", "05:22", "12:57", "16:50", "20:23", "22:03" } },
@@ -273,13 +273,53 @@ namespace Ezan_Vakti_Plus
 
         private void SetPrayerLabels(string[] vakitler)
         {
-            imsakLabel.Text = $"İmsak: {vakitler[0]}";
-            gunesLabel.Text = $"Güneş: {vakitler[1]}";
-            ogleLabel.Text = $"Öğle: {vakitler[2]}";
-            ikindiLabel.Text = $"İkindi: {vakitler[3]}";
-            aksamLabel.Text = $"Akşam: {vakitler[4]}";
-            yatsiLabel.Text = $"Yatsı: {vakitler[5]}";
+            // Namaz isimleri sıralı
+            string[] namazlar = { "İmsak", "Güneş", "Öğle", "İkindi", "Akşam", "Yatsı" };
+    
+            // Etiketleri bir listeye alalım ki dinamik ayarlayalım
+            var labels = new TextBlock[] { imsakLabel, gunesLabel, ogleLabel, ikindiLabel, aksamLabel, yatsiLabel };
+
+            DateTime now = DateTime.Now;
+            int nextPrayerIndex = -1;
+
+            // Hangi vaktin gelecekte olduğunu bul
+            for (int i = 0; i < vakitler.Length; i++)
+            {
+                if (!TimeSpan.TryParse(vakitler[i], out var time))
+                    continue;
+
+                DateTime vakitDateTime = now.Date + time;
+
+                if (vakitDateTime > now)
+                {
+                    nextPrayerIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < vakitler.Length; i++)
+            {
+                string text = $"{namazlar[i]}: {vakitler[i]}";
+                labels[i].Text = text;
+
+                if (i == nextPrayerIndex)
+                {
+                    // Bir sonraki vakit: sarı (örneğin #DD6F00)
+                    labels[i].Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFA500"));
+                }
+                else if (i < nextPrayerIndex || nextPrayerIndex == -1)
+                {
+                    // Geçmiş vakitler beyaz (veya ayarladığın normal renk)
+                    labels[i].Foreground = Brushes.White;
+                }
+                else
+                {
+                    // Gelecek vakitler normal tema renginde (örneğin gri veya siyah)
+                    labels[i].Foreground = settings.IsDarkMode ? Brushes.Gray : new SolidColorBrush(Color.FromRgb(51, 51, 51));
+                }
+            }
         }
+
 
         private void SetPrayerLabels(string defaultText)
         {
