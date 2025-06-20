@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Ayarlar"
-        Height="360" Width="360"
+        Height="400" Width="360"
         Background="#121212"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
@@ -14,85 +14,86 @@
 
     <!-- ========== RESOURCES (aynen duruyor) ========== -->
     <Window.Resources>
-            <!-- FadeInStoryboard -->
-    <Storyboard x:Key="FadeInStoryboard">
-        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                         From="0" To="1"
-                         Duration="0:0:0.3" />
-    </Storyboard>
+        <!-- FadeInStoryboard -->
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:0.3" />
+        </Storyboard>
 
-    <!-- FadeOutStoryboard -->
-    <Storyboard x:Key="FadeOutStoryboard">
-        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                         From="1" To="0"
-                         Duration="0:0:0.3" />
-    </Storyboard>
-    <Color x:Key="JetOrangeColor">#FFDD6F00</Color>
-    <SolidColorBrush x:Key="JetOrange" Color="{StaticResource JetOrangeColor}"/>
-    <SolidColorBrush x:Key="CardBackground" Color="#1E1E1E"/>
+        <!-- FadeOutStoryboard -->
+        <Storyboard x:Key="FadeOutStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="1" To="0"
+                             Duration="0:0:0.3" />
+        </Storyboard>
+        <Color x:Key="JetOrangeColor">#FFDD6F00</Color>
+        <SolidColorBrush x:Key="JetOrange" Color="{StaticResource JetOrangeColor}"/>
+        <SolidColorBrush x:Key="CardBackground" Color="#1E1E1E"/>
 
-    <DropShadowEffect x:Key="DepthShadow" BlurRadius="12" ShadowDepth="0" Opacity="0.45"/>
+        <DropShadowEffect x:Key="DepthShadow" BlurRadius="12" ShadowDepth="0" Opacity="0.45"/>
 
-    <!-- Modern NeoCheckBox Style -->
-    <Style x:Key="NeoCheckBox" TargetType="CheckBox">
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="CheckBox">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <!-- Kutucuk -->
-                        <Border x:Name="Box" Width="22" Height="22" CornerRadius="6"
-                                Background="#222222"
-                                BorderBrush="{StaticResource JetOrange}"
-                                BorderThickness="2"
-                                VerticalAlignment="Center"
-                                RenderTransformOrigin="0.5,0.5">
-                            <Border.RenderTransform>
-                                <ScaleTransform ScaleX="1" ScaleY="1"/>
-                            </Border.RenderTransform>
-                            <!-- Tik işareti -->
-                            <Path x:Name="CheckMark" Visibility="Collapsed" Stroke="White" StrokeThickness="2.5" StrokeLineJoin="Round" StrokeEndLineCap="Round"
-                                  Data="M 4 11 L 9 16 L 18 5"/>
-                        </Border>
-                        <ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True" />
-                    </StackPanel>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="Box" Property="Background" Value="{StaticResource JetOrange}"/>
-                            <Setter TargetName="Box" Property="BorderBrush" Value="{StaticResource JetOrange}"/>
-                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Box" Property="BorderBrush" Value="#FFC87400"/>
-                            <Setter TargetName="Box" Property="RenderTransform">
-                                <Setter.Value><ScaleTransform ScaleX="1.1" ScaleY="1.1"/></Setter.Value>
-                            </Setter>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="Box" Property="Background" Value="#CCB26900"/>
-                            <Setter TargetName="Box" Property="BorderBrush" Value="#CCB26900"/>
-                            <Setter TargetName="Box" Property="RenderTransform">
-                                <Setter.Value><ScaleTransform ScaleX="0.95" ScaleY="0.95"/></Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+        <!-- Modern NeoCheckBox Style -->
+        <Style x:Key="NeoCheckBox" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <!-- Kutucuk -->
+                            <Border x:Name="Box" Width="22" Height="22" CornerRadius="6"
+                                    Background="#222222"
+                                    BorderBrush="{StaticResource JetOrange}"
+                                    BorderThickness="2"
+                                    VerticalAlignment="Center"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                </Border.RenderTransform>
+                                <!-- Tik işareti -->
+                                <Path x:Name="CheckMark" Visibility="Collapsed" Stroke="White" StrokeThickness="2.5" StrokeLineJoin="Round" StrokeEndLineCap="Round"
+                                      Data="M 4 11 L 9 16 L 18 5"/>
+                            </Border>
+                            <ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Box" Property="Background" Value="{StaticResource JetOrange}"/>
+                                <Setter TargetName="Box" Property="BorderBrush" Value="{StaticResource JetOrange}"/>
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#FFC87400"/>
+                                <Setter TargetName="Box" Property="RenderTransform">
+                                    <Setter.Value><ScaleTransform ScaleX="1.1" ScaleY="1.1"/></Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Box" Property="Background" Value="#CCB26900"/>
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#CCB26900"/>
+                                <Setter TargetName="Box" Property="RenderTransform">
+                                    <Setter.Value><ScaleTransform ScaleX="0.95" ScaleY="0.95"/></Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <!-- ========== UI ========== -->
     <Border x:Name="MainGrid" Background="{StaticResource CardBackground}"
             CornerRadius="18" Padding="24" Opacity="0">
         <Grid>
-            <!-- Tema satırı kalktığı için artık 4 satır yeterli -->
+            <!-- Satır sayısı arttı, 5 oldu -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>   <!-- Başlık -->
                 <RowDefinition Height="Auto"/>   <!-- Startup -->
                 <RowDefinition Height="*"/>      <!-- Bildirim btn -->
+                <RowDefinition Height="Auto"/>   <!-- Farklı Kaydet/Yükle bölümü -->
                 <RowDefinition Height="Auto"/>   <!-- Tamam btn -->
             </Grid.RowDefinitions>
 
@@ -116,8 +117,18 @@
                     Margin="0,24,0,0" HorizontalAlignment="Left"
                     Click="NotificationSettingsButton_Click"/>
 
+            <!-- Yeni eklenen bölüm -->
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,20,0,0">
+                <Button Content="Ayarları Farklı Kaydet" Width="140" Height="36"
+                        Style="{StaticResource FluentButton}"
+                        Click="SaveSettingsDifferentButton_Click"/>
+                <Button Content="Ayarları Yükle" Width="120" Height="36"
+                        Style="{StaticResource FluentButton}"
+                        Click="LoadSettingsDifferentButton_Click"/>
+            </StackPanel>
+
             <!-- Tamam -->
-            <Button Grid.Row="3" Content="Tamam" Width="140" Height="46"
+            <Button Grid.Row="4" Content="Tamam" Width="140" Height="46"
                     Style="{StaticResource FluentButton}"
                     HorizontalAlignment="Center" Margin="0,30,0,0"
                     Click="OKButton_Click"/>

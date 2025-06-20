@@ -307,10 +307,32 @@ namespace Ezan_Vakti_Plus
             countdownTimer.Tick += CountdownTimer_Tick;
             countdownTimer.Start();
         }
+        
+        
+        string GetYonelmeEki(string vakit)
+        {
+            switch (vakit)
+            {
+                case "İmsak":
+                case "Akşam":
+                    return "'a";
+                case "Güneş":
+                    return "'e";
+                case "Öğle":
+                case "İkindi":
+                    return "'ye";
+                case "Yatsı":
+                    return "'ya";
+                default:
+                    return "'a"; // Genel varsayılan
+            }
+        }
+
 
         private void CountdownTimer_Tick(object sender, EventArgs e)
         {
             var now = DateTime.Now;
+
             if (!currentVakitler.TryGetValue(now.Day, out var vakitler))
             {
                 countdownLabel.Text = "Namaz vakitleri bulunamadı.";
@@ -330,18 +352,20 @@ namespace Ezan_Vakti_Plus
 
             for (int i = 0; i < vakitler.Length; i++)
             {
-                if (!TimeSpan.TryParse(vakitler[i], out var namazTime)) continue;
+                if (!TimeSpan.TryParse(vakitler[i], out var namazTime))
+                    continue;
 
                 var namazDateTime = now.Date + namazTime;
                 var diff = namazDateTime - now;
 
                 if (diff.TotalSeconds > 0)
                 {
-                    countdownLabel.Text = $"{namazlar[i]}'ye kalan süre: {diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}";
+                    string yonelmeEki = GetYonelmeEki(namazlar[i]);
+                    countdownLabel.Text = $"{namazlar[i]}{yonelmeEki} kalan süre: {diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}";
 
                     if (diff.TotalMinutes <= notificationMinutes[i] && lastNotifiedIndex != i)
                     {
-                        PlayNotificationSound();
+                        PlayNotificationSound(i);
                         lastNotifiedIndex = i;
                     }
 
@@ -353,20 +377,34 @@ namespace Ezan_Vakti_Plus
             lastNotifiedIndex = -1;
         }
 
-        private void PlayNotificationSound()
+
+        private void PlayNotificationSound(int vakitIndex)
         {
-            if (notificationSound != null)
+            string soundFile = vakitIndex switch
+            {
+                0 => settings.ImsakNotificationSoundFile,
+                1 => settings.GunesNotificationSoundFile,
+                2 => settings.OgleNotificationSoundFile,
+                3 => settings.IkindiNotificationSoundFile,
+                4 => settings.AksamNotificationSoundFile,
+                5 => settings.YatsiNotificationSoundFile,
+                _ => null
+            };
+
+            if (!string.IsNullOrEmpty(soundFile) && File.Exists(soundFile))
             {
                 try
                 {
-                    notificationSound.Play();
+                    var player = new System.Media.SoundPlayer(soundFile);
+                    player.Play();
                 }
                 catch
                 {
-                    // Oynatma hatasını yut
+                    // Hata varsa yut
                 }
             }
         }
+
 
         private void StartMarquee()
         {

@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media.Animation;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Ezan_Vakti_Plus
 {
@@ -18,6 +20,67 @@ namespace Ezan_Vakti_Plus
             this.saveSettings = saveSettings;
             LoadValues();
         }
+        
+        private void BrowseSound(string namazAdi)
+        {
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "WAV Dosyaları (*.wav)|*.wav";
+            if (dlg.ShowDialog() == true)
+            {
+                string sourceFile = dlg.FileName;
+
+                string appDir = AppDomain.CurrentDomain.BaseDirectory;
+                string sesKlasoru = Path.Combine(appDir, "Ses");
+
+                if (!Directory.Exists(sesKlasoru))
+                    Directory.CreateDirectory(sesKlasoru);
+
+                string targetFile = Path.Combine(sesKlasoru, $"{namazAdi.ToLower()}.wav");
+
+                // Orijinal dosyayı silmeden kopyala (üzerine yaz)
+                File.Copy(sourceFile, targetFile, true);
+
+                // Ayarlara kaydet (yol değil sadece isim - cünkü sabit klasörde)
+                switch (namazAdi)
+                {
+                    case "İmsak":
+                        settings.ImsakNotificationSoundFile = targetFile;
+                        break;
+                    case "Güneş":
+                        settings.GunesNotificationSoundFile = targetFile;
+                        break;
+                    case "Öğle":
+                        settings.OgleNotificationSoundFile = targetFile;
+                        break;
+                    case "İkindi":
+                        settings.IkindiNotificationSoundFile = targetFile;
+                        break;
+                    case "Akşam":
+                        settings.AksamNotificationSoundFile = targetFile;
+                        break;
+                    case "Yatsı":
+                        settings.YatsiNotificationSoundFile = targetFile;
+                        break;
+                }
+                saveSettings?.Invoke();
+
+                MessageBox.Show($"{namazAdi} için ses dosyası başarıyla yüklendi.", "Başarılı", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        
+        
+        
+        
+        
+        private void BrowseImsak_Click(object sender, RoutedEventArgs e) => BrowseSound("İmsak");
+        private void BrowseGunes_Click(object sender, RoutedEventArgs e) => BrowseSound("Güneş");
+        private void BrowseOgle_Click(object sender, RoutedEventArgs e) => BrowseSound("Öğle");
+        private void BrowseIkindi_Click(object sender, RoutedEventArgs e) => BrowseSound("İkindi");
+        private void BrowseAksam_Click(object sender, RoutedEventArgs e) => BrowseSound("Akşam");
+        private void BrowseYatsi_Click(object sender, RoutedEventArgs e) => BrowseSound("Yatsı");
+
+        
+        
 
         private void LoadValues()
         {

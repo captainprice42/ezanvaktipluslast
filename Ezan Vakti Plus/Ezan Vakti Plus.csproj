@@ -54,6 +54,8 @@
     <Resource Include="Resources\icon.ico" />
     <None Remove="Resources\settings.ico" />
     <Resource Include="Resources\settings.ico" />
+    <None Remove="Resources\settings2.ico" />
+    <Resource Include="Resources\settings2.ico" />
   </ItemGroup>
 
 </Project>

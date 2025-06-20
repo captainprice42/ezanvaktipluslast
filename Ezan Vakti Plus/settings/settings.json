@@ -1,0 +1,10 @@
+﻿{
+  "IsDarkMode": true,
+  "StartWithWindows": false,
+  "ImsakNotificationMinutes": 15,
+  "GunesNotificationMinutes": 15,
+  "OgleNotificationMinutes": 15,
+  "IkindiNotificationMinutes": 15,
+  "AksamNotificationMinutes": 15,
+  "YatsiNotificationMinutes": 15
+}

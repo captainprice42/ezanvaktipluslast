@@ -19,6 +19,9 @@
     <Window.Resources>
         
         
+        
+        
+        
         <!-- Palette -->
         <Color x:Key="JetOrangeColor">#FFDD6F00</Color>
         <Color x:Key="JetDarkColor">#121212</Color>
@@ -149,36 +152,85 @@
                 <ScrollViewer Grid.Row="1" Margin="0,10,0,70" VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <!-- === INPUT ROWS === -->
-                        <StackPanel Orientation="Horizontal" Margin="0,6">
+                        
+                        
+                        <StackPanel Orientation="Horizontal" Margin="0,6" VerticalAlignment="Center">
                             <TextBlock Text="İmsak:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
-                            <TextBox x:Name="ImsakTextBox" Style="{StaticResource TimeBox}"/>
+                            <TextBox x:Name="ImsakTextBox" Style="{StaticResource TimeBox}" MinWidth="50"/>
                             <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                            <Button Content="Gözat" 
+                                    Width="60" 
+                                    Height="28" 
+                                    Margin="10,0,0,0" 
+                                    Click="BrowseImsak_Click"
+                                    Style="{StaticResource JetButtonStyle}"
+                                    VerticalAlignment="Center"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,6">
+
+                        <StackPanel Orientation="Horizontal" Margin="0,6" VerticalAlignment="Center">
                             <TextBlock Text="Güneş:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
-                            <TextBox x:Name="GunesTextBox" Style="{StaticResource TimeBox}"/>
+                            <TextBox x:Name="GunesTextBox" Style="{StaticResource TimeBox}" MinWidth="50"/>
                             <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                            <Button Content="Gözat" 
+                                    Width="60" 
+                                    Height="28" 
+                                    Margin="10,0,0,0" 
+                                    Click="BrowseGunes_Click"
+                                    Style="{StaticResource JetButtonStyle}"
+                                    VerticalAlignment="Center"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,6">
-                            <TextBlock Text="Öğle:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
-                            <TextBox x:Name="OgleTextBox" Style="{StaticResource TimeBox}"/>
-                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,6">
-                            <TextBlock Text="İkindi:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
-                            <TextBox x:Name="IkindiTextBox" Style="{StaticResource TimeBox}"/>
-                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,6">
-                            <TextBlock Text="Akşam:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
-                            <TextBox x:Name="AksamTextBox" Style="{StaticResource TimeBox}"/>
-                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,6">
-                            <TextBlock Text="Yatsı:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
-                            <TextBox x:Name="YatsiTextBox" Style="{StaticResource TimeBox}"/>
-                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
-                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,6" VerticalAlignment="Center">
+        <TextBlock Text="Öğle:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+        <TextBox x:Name="OgleTextBox" Style="{StaticResource TimeBox}" MinWidth="50"/>
+        <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+        <Button Content="Gözat" 
+                Width="60" 
+                Height="28" 
+                Margin="10,0,0,0" 
+                Click="BrowseOgle_Click"
+                Style="{StaticResource JetButtonStyle}"
+                VerticalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Margin="0,6" VerticalAlignment="Center">
+        <TextBlock Text="İkindi:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+        <TextBox x:Name="IkindiTextBox" Style="{StaticResource TimeBox}" MinWidth="50"/>
+        <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+        <Button Content="Gözat" 
+                Width="60" 
+                Height="28" 
+                Margin="10,0,0,0" 
+                Click="BrowseIkindi_Click"
+                Style="{StaticResource JetButtonStyle}"
+                VerticalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Margin="0,6" VerticalAlignment="Center">
+        <TextBlock Text="Akşam:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+        <TextBox x:Name="AksamTextBox" Style="{StaticResource TimeBox}" MinWidth="50"/>
+        <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+        <Button Content="Gözat" 
+                Width="60" 
+                Height="28" 
+                Margin="10,0,0,0" 
+                Click="BrowseAksam_Click"
+                Style="{StaticResource JetButtonStyle}"
+                VerticalAlignment="Center"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Margin="0,6" VerticalAlignment="Center">
+        <TextBlock Text="Yatsı:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+        <TextBox x:Name="YatsiTextBox" Style="{StaticResource TimeBox}" MinWidth="50"/>
+        <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+        <Button Content="Gözat" 
+                Width="60" 
+                Height="28" 
+                Margin="10,0,0,0" 
+                Click="BrowseYatsi_Click"
+                Style="{StaticResource JetButtonStyle}"
+                VerticalAlignment="Center"/>
+    </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
 
