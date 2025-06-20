@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- NotificationSettingsWindow.xaml – fix: restore x:Name=\"RootGrid\" so code‑behind compiles -->
+<Window x:Class="Ezan_Vakti_Plus.NotificationSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bildirim Ayarları"
+        Height="520" Width="360"
+        Background="Transparent"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        SnapsToDevicePixels="True"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
+
+    <!-- ========== RESOURCES ========== -->
+    <Window.Resources>
+        
+        
+        <!-- Palette -->
+        <Color x:Key="JetOrangeColor">#FFDD6F00</Color>
+        <Color x:Key="JetDarkColor">#121212</Color>
+        <Color x:Key="CardColor">#1E1E1E</Color>
+
+        <SolidColorBrush x:Key="JetOrange" Color="{StaticResource JetOrangeColor}"/>
+        <SolidColorBrush x:Key="CardBackground" Color="{StaticResource CardColor}"/>
+
+        <!-- Shadow -->
+        <DropShadowEffect x:Key="DepthShadow" BlurRadius="15" ShadowDepth="0" Opacity="0.45"/>
+
+        <!-- ===== BUTTON STYLE ===== -->
+        <Style x:Key="JetButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource CardBackground}"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="{StaticResource JetOrangeColor}" Offset="0"/>
+                        <GradientStop Color="#FFC87400" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect" Value="{StaticResource DepthShadow}"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value><ScaleTransform/></Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="root" CornerRadius="12" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="root" Property="Opacity" Value="0.9"/>
+                                <Setter TargetName="root" Property="RenderTransform">
+                                    <Setter.Value><ScaleTransform ScaleX="1.02" ScaleY="1.02"/></Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="root" Property="Opacity" Value="0.8"/>
+                                <Setter TargetName="root" Property="RenderTransform">
+                                    <Setter.Value><ScaleTransform ScaleX="0.98" ScaleY="0.98"/></Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ===== TEXTBOX STYLE ===== -->
+        <Style x:Key="TimeBox" TargetType="TextBox">
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border" CornerRadius="8" Background="#2A2A2A">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#333333"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#3D3D3D"/>
+                                <Setter TargetName="border" Property="BorderThickness" Value="1"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource JetOrange}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ==== FADE ANIMATION ==== -->
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.35"/>
+        </Storyboard>
+        <Storyboard x:Key="FadeOutStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <!-- ========== UI LAYER ========== -->
+    <!-- Border renamed to RootGrid so code-behind animations work -->
+    <Border x:Name="RootGrid" Background="{StaticResource CardBackground}" CornerRadius="18" Padding="24" Effect="{StaticResource DepthShadow}" Opacity="0">
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="Border.Loaded">
+                <BeginStoryboard Storyboard="{StaticResource FadeInStoryboard}"/>
+            </EventTrigger>
+        </Border.Triggers>
+
+        <Grid>
+            <!-- Background top glow -->
+            <Rectangle Height="140" VerticalAlignment="Top" Opacity="0.2">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#40DD6F00" Offset="0"/>
+                        <GradientStop Color="#00000000" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Grid Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Title -->
+                <TextBlock Text="Bildirim Ayarları" FontSize="24" FontWeight="Bold" Foreground="{StaticResource JetOrange}" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                <!-- Scrollable input list -->
+                <ScrollViewer Grid.Row="1" Margin="0,10,0,70" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <!-- === INPUT ROWS === -->
+                        <StackPanel Orientation="Horizontal" Margin="0,6">
+                            <TextBlock Text="İmsak:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+                            <TextBox x:Name="ImsakTextBox" Style="{StaticResource TimeBox}"/>
+                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,6">
+                            <TextBlock Text="Güneş:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+                            <TextBox x:Name="GunesTextBox" Style="{StaticResource TimeBox}"/>
+                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,6">
+                            <TextBlock Text="Öğle:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+                            <TextBox x:Name="OgleTextBox" Style="{StaticResource TimeBox}"/>
+                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,6">
+                            <TextBlock Text="İkindi:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+                            <TextBox x:Name="IkindiTextBox" Style="{StaticResource TimeBox}"/>
+                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,6">
+                            <TextBlock Text="Akşam:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+                            <TextBox x:Name="AksamTextBox" Style="{StaticResource TimeBox}"/>
+                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,6">
+                            <TextBlock Text="Yatsı:" Foreground="White" FontSize="16" Width="110" VerticalAlignment="Center"/>
+                            <TextBox x:Name="YatsiTextBox" Style="{StaticResource TimeBox}"/>
+                            <TextBlock Text="dk" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="5,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Save -->
+                <Button Grid.Row="2" Content="Kaydet" Width="160" Height="46" Style="{StaticResource JetButtonStyle}" HorizontalAlignment="Center" Margin="0,0,0,10" Click="SaveButton_Click"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,121 +1,126 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
-using System.Windows.Input;
 using System.Media;
-using System.Windows.Media; // Ses için
 
 namespace Ezan_Vakti_Plus
 {
     public partial class MainWindow : Window
     {
-private Dictionary<int, string[]> KaratayVakitleri = new Dictionary<int, string[]>
-{
-    {1, new string[] {"03:37", "05:22", "12:52", "16:43", "20:11", "21:47"} },
-    {2, new string[] {"03:35", "05:21", "12:53", "16:43", "20:12", "21:48"} },
-    {3, new string[] {"03:35", "05:21", "12:53", "16:43", "20:13", "21:49"} },
-    {4, new string[] {"03:34", "05:20", "12:53", "16:43", "20:13", "21:50"} },
-    {5, new string[] {"03:34", "05:20", "12:53", "16:44", "20:14", "21:51"} },
-    {6, new string[] {"03:33", "05:20", "12:53", "16:44", "20:14", "21:51"} },
-    {7, new string[] {"03:33", "05:20", "12:53", "16:44", "20:14", "21:52"} },
-    {8, new string[] {"03:33", "05:20", "12:53", "16:44", "20:15", "21:52"} },
-    {9, new string[] {"03:33", "05:21", "12:54", "16:47", "20:18", "21:57"} },
-    {10, new string[] {"03:33", "05:20", "12:54", "16:47", "20:19", "21:58"} },
-    {11, new string[] {"03:33", "05:20", "12:55", "16:48", "20:19", "21:59"} },
-    {12, new string[] {"03:33", "05:20", "12:55", "16:48", "20:19", "21:59"} },
-    {13, new string[] {"03:32", "05:20", "12:55", "16:48", "20:20", "22:00"} },
-    {14, new string[] {"03:32", "05:20", "12:55", "16:48", "20:20", "22:00"} },
-    {15, new string[] {"03:32", "05:20", "12:55", "16:49", "20:21", "22:01"} },
-    {16, new string[] {"03:32", "05:20", "12:56", "16:49", "20:21", "22:01"} },
-    {17, new string[] {"03:32", "05:20", "12:56", "16:49", "20:21", "22:02"} },
-    {18, new string[] {"03:32", "05:21", "12:56", "16:49", "20:22", "22:02"} },
-    {19, new string[] {"03:32", "05:21", "12:56", "16:49", "20:22", "22:03"} },
-    {20, new string[] {"03:32", "05:21", "12:57", "16:50", "20:22", "22:03"} },
-    {21, new string[] {"03:32", "05:21", "12:57", "16:50", "20:23", "22:03"} },
-    {22, new string[] {"03:32", "05:21", "12:57", "16:50", "20:23", "22:03"} },
-    {23, new string[] {"03:32", "05:22", "12:57", "16:50", "20:23", "22:03"} },
-    {24, new string[] {"03:32", "05:22", "12:57", "16:51", "20:23", "22:04"} },
-    {25, new string[] {"03:33", "05:22", "12:58", "16:51", "20:23", "22:04"} },
-    {26, new string[] {"03:33", "05:22", "12:58", "16:51", "20:23", "22:04"} },
-    {27, new string[] {"03:33", "05:23", "12:58", "16:51", "20:23", "22:04"} },
-    {28, new string[] {"03:33", "05:23", "12:58", "16:51", "20:23", "22:04"} },
-    {29, new string[] {"03:34", "05:23", "12:58", "16:51", "20:23", "22:04"} },
-    {30, new string[] {"03:34", "05:23", "12:58", "16:51", "20:23", "22:04"} }
-};
+        private const string ProfileFilePath = "profiles/profile.json";
 
-private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
-{
-    {1, new string[] {"03:40", "05:25", "12:55", "16:45", "20:14", "21:49"} },
-    {2, new string[] {"03:39", "05:24", "12:56", "16:46", "20:15", "21:50"} },
-    {3, new string[] {"03:38", "05:24", "12:56", "16:46", "20:16", "21:52"} },
-    {4, new string[] {"03:38", "05:24", "12:56", "16:46", "20:16", "21:52"} },
-    {5, new string[] {"03:37", "05:23", "12:56", "16:46", "20:17", "21:53"} },
-    {6, new string[] {"03:37", "05:23", "12:56", "16:47", "20:17", "21:54"} },
-    {7, new string[] {"03:36", "05:23", "12:56", "16:47", "20:18", "21:55"} },
-    {8, new string[] {"03:35", "05:23", "12:57", "16:47", "20:19", "21:56"} },
-    {9, new string[] {"03:35", "05:22", "12:57", "16:47", "20:19", "21:56"} },
-    {10, new string[] {"03:35", "05:22", "12:57", "16:47", "20:20", "21:58"} },
-    {11, new string[] {"03:34", "05:22", "12:57", "16:48", "20:20", "21:58"} },
-    {12, new string[] {"03:34", "05:22", "12:57", "16:48", "20:20", "21:59"} },
-    {13, new string[] {"03:34", "05:22", "12:58", "16:48", "20:21", "21:59"} },
-    {14, new string[] {"03:34", "05:22", "12:58", "16:48", "20:22", "21:59"} },
-    {15, new string[] {"03:34", "05:22", "12:58", "16:49", "20:22", "22:01"} },
-    {16, new string[] {"03:34", "05:22", "12:58", "16:49", "20:22", "22:01"} },
-    {17, new string[] {"03:34", "05:22", "12:58", "16:49", "20:23", "22:01"} },
-    {18, new string[] {"03:34", "05:22", "12:58", "16:49", "20:23", "22:02"} },
-    {19, new string[] {"03:34", "05:22", "12:58", "16:49", "20:23", "22:02"} },
-    {20, new string[] {"03:34", "05:22", "12:59", "16:50", "20:23", "22:02"} },
-    {21, new string[] {"03:34", "05:22", "12:59", "16:50", "20:24", "22:03"} },
-    {22, new string[] {"03:34", "05:22", "12:59", "16:50", "20:24", "22:03"} },
-    {23, new string[] {"03:34", "05:22", "12:59", "16:50", "20:24", "22:03"} },
-    {24, new string[] {"03:35", "05:22", "12:59", "16:51", "20:24", "22:04"} },
-    {25, new string[] {"03:35", "05:22", "12:59", "16:51", "20:24", "22:04"} },
-    {26, new string[] {"03:35", "05:22", "12:59", "16:51", "20:24", "22:04"} },
-    {27, new string[] {"03:35", "05:23", "12:59", "16:51", "20:24", "22:04"} },
-    {28, new string[] {"03:35", "05:23", "12:59", "16:51", "20:24", "22:04"} },
-    {29, new string[] {"03:35", "05:23", "12:59", "16:51", "20:24", "22:04"} },
-    {30, new string[] {"03:35", "05:23", "12:59", "16:51", "20:24", "22:04"} }
-};
+        // Burada senin önceden verdiğin Karatay ve Meram vakitleri:
+        private static readonly Dictionary<int, string[]> KaratayVakitleri = new Dictionary<int, string[]>
+        {
+            // Örnek: 1 Ocak için vakitler
+            { 1, new string[] { "03:37", "05:22", "12:52", "16:43", "20:11", "21:47" } },
+            { 2, new string[] { "03:35", "05:21", "12:53", "16:43", "20:12", "21:48" } },
+            { 3, new string[] { "03:35", "05:21", "12:53", "16:43", "20:13", "21:49" } },
+            { 4, new string[] { "03:34", "05:20", "12:53", "16:43", "20:13", "21:50" } },
+            { 5, new string[] { "03:34", "05:20", "12:53", "16:44", "20:14", "21:51" } },
+            { 6, new string[] { "03:33", "05:20", "12:53", "16:44", "20:14", "21:51" } },
+            { 7, new string[] { "03:33", "05:20", "12:53", "16:44", "20:14", "21:52" } },
+            { 8, new string[] { "03:33", "05:20", "12:53", "16:44", "20:15", "21:52" } },
+            { 9, new string[] { "03:33", "05:21", "12:54", "16:47", "20:18", "21:57" } },
+            { 10, new string[] { "03:33", "05:20", "12:54", "16:47", "20:19", "21:58" } },
+            { 11, new string[] { "03:33", "05:20", "12:55", "16:48", "20:19", "21:59" } },
+            { 12, new string[] { "03:33", "05:20", "12:55", "16:48", "20:19", "21:59" } },
+            { 13, new string[] { "03:32", "05:20", "12:55", "16:48", "20:20", "22:00" } },
+            { 14, new string[] { "03:32", "05:20", "12:55", "16:48", "20:20", "22:00" } },
+            { 15, new string[] { "03:32", "05:20", "12:55", "16:49", "20:21", "22:01" } },
+            { 16, new string[] { "03:32", "05:20", "12:56", "16:49", "20:21", "22:01" } },
+            { 17, new string[] { "03:32", "05:20", "12:56", "16:49", "20:21", "22:02" } },
+            { 18, new string[] { "03:32", "05:21", "12:56", "16:49", "20:22", "22:02" } },
+            { 19, new string[] { "03:32", "05:21", "12:56", "16:49", "20:22", "22:03" } },
+            { 20, new string[] { "03:32", "05:21", "12:57", "16:50", "20:22", "22:03" } },
+            { 21, new string[] { "03:32", "05:21", "12:57", "16:50", "20:23", "22:03" } },
+            { 22, new string[] { "03:32", "05:21", "12:57", "16:50", "20:23", "22:03" } },
+            { 23, new string[] { "03:32", "05:22", "12:57", "16:50", "20:23", "22:03" } },
+            { 24, new string[] { "03:32", "05:22", "12:57", "16:51", "20:23", "22:04" } },
+            { 25, new string[] { "03:33", "05:22", "12:58", "16:51", "20:23", "22:04" } },
+            { 26, new string[] { "03:33", "05:22", "12:58", "16:51", "20:23", "22:04" } },
+            { 27, new string[] { "03:33", "05:23", "12:58", "16:51", "20:23", "22:04" } },
+            { 28, new string[] { "03:33", "05:23", "12:58", "16:51", "20:23", "22:04" } },
+            { 29, new string[] { "03:34", "05:23", "12:58", "16:51", "20:23", "22:04" } },
+            { 30, new string[] { "03:34", "05:23", "12:58", "16:51", "20:23", "22:04" } }
+        };
 
-        
+        private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
+        {
+            { 1, new string[] { "03:40", "05:25", "12:55", "16:45", "20:14", "21:49" } },
+            { 2, new string[] { "03:39", "05:24", "12:56", "16:46", "20:15", "21:50" } },
+            { 3, new string[] { "03:38", "05:24", "12:56", "16:46", "20:16", "21:52" } },
+            { 4, new string[] { "03:38", "05:24", "12:56", "16:46", "20:16", "21:52" } },
+            { 5, new string[] { "03:37", "05:23", "12:56", "16:46", "20:17", "21:53" } },
+            { 6, new string[] { "03:37", "05:23", "12:56", "16:47", "20:17", "21:54" } },
+            { 7, new string[] { "03:36", "05:23", "12:56", "16:47", "20:18", "21:55" } },
+            { 8, new string[] { "03:35", "05:23", "12:57", "16:47", "20:19", "21:56" } },
+            { 9, new string[] { "03:35", "05:22", "12:57", "16:47", "20:19", "21:56" } },
+            { 10, new string[] { "03:35", "05:22", "12:57", "16:47", "20:20", "21:58" } },
+            { 11, new string[] { "03:34", "05:22", "12:57", "16:48", "20:20", "21:58" } },
+            { 12, new string[] { "03:34", "05:22", "12:57", "16:48", "20:20", "21:59" } },
+            { 13, new string[] { "03:34", "05:22", "12:58", "16:48", "20:21", "21:59" } },
+            { 14, new string[] { "03:34", "05:22", "12:58", "16:48", "20:22", "21:59" } },
+            { 15, new string[] { "03:34", "05:22", "12:58", "16:49", "20:22", "22:01" } },
+            { 16, new string[] { "03:34", "05:22", "12:58", "16:49", "20:22", "22:01" } },
+            { 17, new string[] { "03:34", "05:22", "12:58", "16:49", "20:23", "22:01" } },
+            { 18, new string[] { "03:34", "05:22", "12:58", "16:49", "20:23", "22:02" } },
+            { 19, new string[] { "03:34", "05:22", "12:58", "16:49", "20:23", "22:02" } },
+            { 20, new string[] { "03:34", "05:22", "12:59", "16:50", "20:23", "22:02" } },
+            { 21, new string[] { "03:34", "05:22", "12:59", "16:50", "20:24", "22:03" } },
+            { 22, new string[] { "03:34", "05:22", "12:59", "16:50", "20:24", "22:03" } },
+            { 23, new string[] { "03:34", "05:22", "12:59", "16:50", "20:24", "22:03" } },
+            { 24, new string[] { "03:35", "05:22", "12:59", "16:51", "20:24", "22:04" } },
+            { 25, new string[] { "03:35", "05:22", "12:59", "16:51", "20:24", "22:04" } },
+            { 26, new string[] { "03:35", "05:22", "12:59", "16:51", "20:24", "22:04" } },
+            { 27, new string[] { "03:35", "05:23", "12:59", "16:51", "20:24", "22:04" } },
+            { 28, new string[] { "03:35", "05:23", "12:59", "16:51", "20:24", "22:04" } },
+            { 29, new string[] { "03:35", "05:23", "12:59", "16:51", "20:24", "22:04" } },
+            { 30, new string[] { "03:35", "05:23", "12:59", "16:51", "20:24", "22:04" } }
+        };
+
         private int lastNotifiedIndex = -1;
-        private readonly Brush activeBackground = new SolidColorBrush(Color.FromRgb(221, 111, 0)); // Turuncu
+        private readonly Brush activeBackground = new SolidColorBrush(Color.FromRgb(221, 111, 0));
         private readonly Brush activeForeground = Brushes.White;
         private readonly Brush inactiveBackground = Brushes.Transparent;
         private readonly Brush inactiveForeground = Brushes.White;
- 
+        private readonly Brush lightInactiveBackground = new SolidColorBrush(Color.FromRgb(224, 224, 224));
+
         private Dictionary<int, string[]> currentVakitler;
         private Button currentActiveButton;
 
         private DispatcherTimer countdownTimer;
         private DispatcherTimer marqueeTimer;
         private double marqueeX;
-        private bool marqueeRotatedRight = false;
 
         private SoundPlayer notificationSound;
 
-        private bool notificationPlayedForIkindi = false;
-
+        private AppSettings settings;
 
         public MainWindow()
         {
-            
             InitializeComponent();
-            
+
             currentVakitler = KaratayVakitleri;
             currentActiveButton = btnKaratay;
 
+            LoadSettings();
+            ApplyTheme();
             UpdateButtonStyles();
-
             UpdatePrayerTimes(DateTime.Now.Day);
 
             StartCountdownTimer();
             StartMarquee();
 
-            // Ses dosyasını yükle (proje dizininde "Ses/bildirim.wav" olmalı)
             try
             {
                 notificationSound = new SoundPlayer("Ses/bildirim.wav");
@@ -123,29 +128,108 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
             }
             catch
             {
-                // Dosya bulunamazsa sessizce devam et
                 notificationSound = null;
+            }
+
+
+        }
+
+        private void LoadSettings()
+        {
+            try
+            {
+                if (File.Exists(ProfileFilePath))
+                {
+                    string json = File.ReadAllText(ProfileFilePath);
+                    settings = JsonSerializer.Deserialize<AppSettings>(json) ?? new AppSettings();
+                }
+                else
+                {
+                    settings = new AppSettings();
+                    SaveSettings();
+                }
+            }
+            catch
+            {
+                settings = new AppSettings();
+            }
+        }
+
+        private void SaveSettings()
+        {
+            try
+            {
+                var dir = Path.GetDirectoryName(ProfileFilePath);
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+
+                string json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(ProfileFilePath, json);
+            }
+            catch
+            {
+                // Sessizce devam et
+            }
+        }
+
+        private void ApplyTheme()
+        {
+            if (settings.IsDarkMode)
+            {
+                Background = new SolidColorBrush(Color.FromRgb(18, 18, 18));
+                timesPanel.Children.OfType<TextBlock>().ToList().ForEach(tb => tb.Foreground = Brushes.White);
+                marqueeText.Foreground = new SolidColorBrush(Color.FromRgb(255, 165, 0));
+                countdownLabel.Foreground = new SolidColorBrush(Color.FromRgb(255, 165, 0));
+                PrayerTimesBorder.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                btnKaratay.Background = activeBackground;
+                btnMeram.Background = inactiveBackground;
+                btnMeram.Foreground = inactiveForeground;
+            }
+            else
+            {
+                Background = Brushes.White;
+                timesPanel.Children.OfType<TextBlock>().ToList()
+                    .ForEach(tb => tb.Foreground = new SolidColorBrush(Color.FromRgb(51, 51, 51)));
+                marqueeText.Foreground = new SolidColorBrush(Color.FromRgb(221, 111, 0));
+                countdownLabel.Foreground = new SolidColorBrush(Color.FromRgb(221, 111, 0));
+                PrayerTimesBorder.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+                btnKaratay.Background = activeBackground;
+                btnMeram.Background = lightInactiveBackground;
+                btnMeram.Foreground = new SolidColorBrush(Color.FromRgb(51, 51, 51));
+            }
+        }
+
+        private void SetStartup(bool enable)
+        {
+            try
+            {
+                using var rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                if (enable)
+                    rk.SetValue("EzanVaktiPlus", System.Reflection.Assembly.GetExecutingAssembly().Location);
+                else
+                    rk.DeleteValue("EzanVaktiPlus", false);
+            }
+            catch
+            {
+                // Sessizce devam et
             }
         }
 
         private void UpdateButtonStyles()
         {
-            // Karatay butonu aktifse
             if (currentActiveButton == btnKaratay)
             {
                 btnKaratay.Background = activeBackground;
                 btnKaratay.Foreground = activeForeground;
-
-                btnMeram.Background = inactiveBackground;
-                btnMeram.Foreground = inactiveForeground;
+                btnMeram.Background = settings.IsDarkMode ? inactiveBackground : lightInactiveBackground;
+                btnMeram.Foreground = settings.IsDarkMode ? inactiveForeground : new SolidColorBrush(Color.FromRgb(51, 51, 51));
             }
-            else // Meram aktifse
+            else
             {
                 btnMeram.Background = activeBackground;
                 btnMeram.Foreground = activeForeground;
-
-                btnKaratay.Background = inactiveBackground;
-                btnKaratay.Foreground = inactiveForeground;
+                btnKaratay.Background = settings.IsDarkMode ? inactiveBackground : lightInactiveBackground;
+                btnKaratay.Foreground = settings.IsDarkMode ? inactiveForeground : new SolidColorBrush(Color.FromRgb(51, 51, 51));
             }
         }
 
@@ -171,9 +255,7 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
         {
             currentVakitler = currentActiveButton == btnKaratay ? KaratayVakitleri : MeramVakitleri;
 
-            var vakitler = currentVakitler.ContainsKey(day) ? currentVakitler[day] : null;
-
-            if (vakitler == null)
+            if (!currentVakitler.TryGetValue(day, out var vakitler))
             {
                 SetPrayerLabels("--:--");
                 return;
@@ -218,23 +300,14 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
 
         private void StartCountdownTimer()
         {
-            countdownTimer = new DispatcherTimer();
-            countdownTimer.Interval = TimeSpan.FromSeconds(1);
+            countdownTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
             countdownTimer.Tick += CountdownTimer_Tick;
             countdownTimer.Start();
         }
-        
-        
-        
-        
-        
-       
-        
-        
-        
-        
-        
-        
+
         private void CountdownTimer_Tick(object sender, EventArgs e)
         {
             var now = DateTime.Now;
@@ -245,6 +318,15 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
             }
 
             string[] namazlar = { "İmsak", "Güneş", "Öğle", "İkindi", "Akşam", "Yatsı" };
+            int[] notificationMinutes =
+            {
+                settings.ImsakNotificationMinutes,
+                settings.GunesNotificationMinutes,
+                settings.OgleNotificationMinutes,
+                settings.IkindiNotificationMinutes,
+                settings.AksamNotificationMinutes,
+                settings.YatsiNotificationMinutes
+            };
 
             for (int i = 0; i < vakitler.Length; i++)
             {
@@ -255,39 +337,33 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
 
                 if (diff.TotalSeconds > 0)
                 {
-                    countdownLabel.Text =
-                        $"{namazlar[i]}'ye kalan süre: {diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}";
+                    countdownLabel.Text = $"{namazlar[i]}'ye kalan süre: {diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}";
 
-                    // 15 dk içinde ve henüz o namaz için çalınmadıysa
-                    if (diff.TotalMinutes <= 15 && lastNotifiedIndex != i)
+                    if (diff.TotalMinutes <= notificationMinutes[i] && lastNotifiedIndex != i)
                     {
                         PlayNotificationSound();
-                        lastNotifiedIndex = i;           // Aynı vakit için tekrar çalınmasını engelle
+                        lastNotifiedIndex = i;
                     }
-                    return;  // Gelecek ilk vakti bulduk, döngüden çık
+
+                    return;
                 }
             }
 
-            // Günün tüm vakitleri geçtiyse bayrağı sıfırla
             countdownLabel.Text = "Bugünkü namaz vakitleri tamamlandı.";
             lastNotifiedIndex = -1;
         }
 
-
-
-        private async void PlayNotificationSound()
+        private void PlayNotificationSound()
         {
             if (notificationSound != null)
             {
                 try
                 {
-                    notificationSound.PlaySync();
-                    await Task.Delay(1000);
-                    notificationSound.Stop();
+                    notificationSound.Play();
                 }
                 catch
                 {
-                    // Hata varsa geç
+                    // Oynatma hatasını yut
                 }
             }
         }
@@ -297,8 +373,10 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
             marqueeX = marqueeCanvas.ActualWidth;
             Canvas.SetLeft(marqueeText, marqueeX);
 
-            marqueeTimer = new DispatcherTimer();
-            marqueeTimer.Interval = TimeSpan.FromMilliseconds(20);
+            marqueeTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(20)
+            };
             marqueeTimer.Tick += MarqueeTimer_Tick;
             marqueeTimer.Start();
 
@@ -312,7 +390,7 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
         private void MarqueeTimer_Tick(object sender, EventArgs e)
         {
             double left = Canvas.GetLeft(marqueeText);
-            left -= 2; // hız
+            left -= 2;
 
             if (left + marqueeText.ActualWidth < 0)
                 left = marqueeCanvas.ActualWidth;
@@ -320,36 +398,27 @@ private Dictionary<int, string[]> MeramVakitleri = new Dictionary<int, string[]>
             Canvas.SetLeft(marqueeText, left);
         }
 
-        private void MarqueeText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var rotateAnim = new DoubleAnimation
-            {
-                Duration = TimeSpan.FromMilliseconds(400),
-                FillBehavior = FillBehavior.HoldEnd
-            };
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+        }
 
-            if (!marqueeRotatedRight)
-            {
-                rotateAnim.To = 0;
-                rotateAnim.Completed += (s, ev) =>
-                {
-                    marqueeText.Text = "Ezan Vakti Plus İyi Günler Diler";
-                    marqueeRotatedRight = false;
-                    marqueeTimer.Start();
-                };
-            }
-            else
-            {
-                rotateAnim.To = 0;
-                rotateAnim.Completed += (s, ev) =>
-                {
-                    marqueeText.Text = "Ezan Vakti Plus İyi Günler Diler";
-                    marqueeRotatedRight = false;
-                    marqueeTimer.Start();
-                };
-            }
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
 
-            marqueeRotate.BeginAnimation(System.Windows.Media.RotateTransform.AngleProperty, rotateAnim);
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new SettingsWindow(settings, SaveSettings);
+            settingsWindow.Owner = this;
+            settingsWindow.ShowDialog();
         }
     }
 }

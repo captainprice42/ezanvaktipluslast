@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\destr\\RiderProjects\\ezanvaktipluslast\\Ezan Vakti Plus\\Ezan Vakti Plus.csproj": {
-      "version": "1.1.0",
+      "version": "1.3.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\destr\\RiderProjects\\ezanvaktipluslast\\Ezan Vakti Plus\\Ezan Vakti Plus.csproj",
         "projectName": "Ezan Vakti Plus",
@@ -46,13 +46,37 @@
         "net7.0-windows10.0.19041": {
           "targetAlias": "net7.0-windows10.0.19041.0",
           "dependencies": {
+            "Microsoft.NET.ILLink.Analyzers": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.100-1.23211.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.100-1.23211.1, )",
+              "autoReferenced": true
+            },
             "Microsoft.Toolkit.Uwp.Notifications": {
               "target": "Package",
               "version": "[7.1.3, )"
             },
+            "Microsoft.Win32.Registry": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.Windows.SDK.BuildTools": {
               "target": "Package",
               "version": "[10.0.26100.4188, )"
+            },
+            "SharpCompress": {
+              "target": "Package",
+              "version": "[0.32.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[10.0.0-preview.5.25277.114, )"
             }
           },
           "imports": [
@@ -72,6 +96,10 @@
               "version": "[7.0.20, 7.0.20]"
             },
             {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
               "name": "Microsoft.NETCore.App.Host.win-x64",
               "version": "[7.0.20, 7.0.20]"
             },
@@ -80,11 +108,19 @@
               "version": "[7.0.20, 7.0.20]"
             },
             {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
               "name": "Microsoft.Windows.SDK.NET.Ref",
               "version": "[10.0.19041.55, 10.0.19041.55]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
               "version": "[7.0.20, 7.0.20]"
             }
           ],
@@ -100,6 +136,11 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
         }
       }
     }
