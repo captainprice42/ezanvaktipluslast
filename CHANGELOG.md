@@ -75,3 +75,41 @@ Bu belge, Ezan Vakti Plus uygulamasındaki tüm önemli değişiklikleri, yeni �
 * 📦 **Export / Import Settings**: Full backup and restore support using `settings.json`.
 * 🔒 **Privacy Mode**: Mutes alerts when the screen is off or logs silently.
 * 📡 **Offline Mode**: App will function using cached data if no connection is available.
+
+## 📦 v1.4 – 2025-06-20
+
+### 🇹🇷 Türkçe
+
+* ⚙️ **Ayarlar Simgesi Alta Taşındı**: Daha sade ve kullanışlı bir arayüz için ayarlar simgesi alt bara konumlandırıldı.
+* 🔊 **Namaz Bildirim Sesleri Özelleştirildi**: Her namaz vakti için farklı `.wav` dosyaları atanabilir hale geldi.
+* 📦 **Ayarları Dışa Aktar / Geri Yükle**: `settings.json` dosyasıyla kullanıcı ayarları kolayca yedeklenip geri yüklenebilir oldu.
+* 🔒 **Gizlilik Modu**: Ekran kapalıyken bildirimler sessize alınabilir veya sadece log’a yazılabilir.
+* 📡 **Çevrimdışı Mod**: İnternet bağlantısı yokken uygulama önceden çekilmiş verilerle çalışmaya devam eder.
+
+### 🇬🇧 English
+
+* ⚙️ **Settings Icon Moved to Bottom Bar**: Settings icon relocated to the bottom bar for a cleaner UI.
+* 🔊 **Per-Prayer Notification Sounds Customizable**: Different `.wav` files can be assigned to each prayer notification.
+* 📦 **Export / Import Settings**: User settings can be backed up and restored easily via a `settings.json` file.
+* 🔒 **Privacy Mode**: Notifications are muted or silently logged when the screen is off.
+* 📡 **Offline Mode**: The app continues functioning with cached data when offline.
+
+---
+
+## 🔭 Gelecek Sürüm (v1.5 Planları)
+
+### 🇹🇷 Türkçe
+
+* 🌐 **Çoklu Dil Desteği (Localization)**: Kullanıcı arayüzü çoklu dil paketleriyle desteklenecek, kolayca dil değiştirilebilecek.
+* ⏰ **Bildirim Hatırlatma Özelliği**: Kaçırılan namaz vakti bildirimleri için tekrar hatırlatma seçeneği eklenecek.
+* 📊 **Bildirim ve Aktivite Geçmişi**: Kullanıcı uygulama içinden geçmiş bildirimleri ve kaçırılan vakitleri görüntüleyebilecek.
+* 🎨 **Tema ve Karanlık Mod Geliştirmeleri**: Otomatik karanlık mod ve özelleştirilebilir renk temaları eklenecek.
+* ⚙️ **Performans ve Kaynak Yönetimi Optimizasyonu**: Arka plan işlemleri optimize edilerek kaynak kullanımı azaltılacak.
+
+### 🇬🇧 English
+
+* 🌐 **Multi-Language Support (Localization)**: The UI will support multiple language packs for easy switching.
+* ⏰ **Notification Reminder Feature**: Option to resend missed prayer notifications after a user-defined interval.
+* 📊 **Notification & Activity History**: Users will be able to view past and missed notifications within the app.
+* 🎨 **Theme and Dark Mode Enhancements**: Adaptive dark mode and customizable color themes will be added.
+* ⚙️ **Performance and Resource Management Optimization**: Background processes will be optimized to reduce resource consumption.
