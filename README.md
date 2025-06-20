@@ -35,3 +35,8 @@ Features:
 * Easily customizable and extensible code structure
 
 This project is open source and aims to support individuals who want to digitally track their daily worship routines.
+
+
+## 📄 Belgeler / Documents
+
+- [🆕 Değişim Günlüğü / Change Log](./CHANGELOG.md)
