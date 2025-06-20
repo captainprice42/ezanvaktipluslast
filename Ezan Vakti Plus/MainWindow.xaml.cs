@@ -16,6 +16,8 @@ namespace Ezan_Vakti_Plus
 {
     public partial class MainWindow : Window
     {
+        
+        
         private const string ProfileFilePath = "profiles/profile.json";
 
         // Burada senin önceden verdiğin Karatay ve Meram vakitleri:
@@ -108,6 +110,11 @@ namespace Ezan_Vakti_Plus
 
         public MainWindow()
         {
+            
+            Loaded += async (_, __) => await VersionChecker.CheckAsync(this);
+            
+
+            
             InitializeComponent();
 
             currentVakitler = KaratayVakitleri;
