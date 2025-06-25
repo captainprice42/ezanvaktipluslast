@@ -169,3 +169,39 @@ Bu belge, Ezan Vakti Plus uygulamasındaki tüm önemli değişiklikleri, yeni �
 * 🔔 **Friday Message Reminder**: A hadith or verse will be automatically displayed every Friday morning.
 * 📝 **Daily Intention Field**: A space for users to write their spiritual goals or reflections for the day.
 * 💬 **Community Recommendations**: Anonymous user-submitted verses and hadiths will appear in a small section of the main screen.
+
+  ---
+
+## 📦 v1.9 – 2025-06-25
+
+### 🇹🇷 Türkçe
+
+* 📝 **Log Sistemi Eklendi:** Uygulama içi kritik olaylar ve hatalar kaydedilmeye başlandı, sorun tespiti kolaylaşacak.
+* 🗂️ **Minimize Halde Başlatma:** Windows açılışında uygulama artık minimize olarak başlatılabiliyor, kullanıcı deneyimi iyileşti.
+* 🌐 **İnternet Kontrolü ve Çevrimdışı Durumu:** Bağlantı durumu anlık takip ediliyor, çevrimdışıysa kullanıcıya görsel uyarı veriliyor.
+* 💾 **Ayar Yükleme Koruması:** Dışarıdan yüklenen ayarlar, uygulama kapatılıp açıldığında kaybolmuyor, kalıcı hale getirildi.
+* ✍️ **Ayar Dosyası İsimlendirme:** Ayarları kaydederken dosya ismini kullanıcı kendisi seçebiliyor, esneklik sağlandı.
+* 📦 **Setup Dosyası Eklendi:** İlk kurulum için Inno Setup tabanlı kurulum dosyası hazırlandı.
+
+---
+
+### 🇬🇧 English
+
+* 📝 **Logging System Added:** Critical events and errors are now recorded inside the app for easier troubleshooting.
+* 🗂️ **Start Minimized Option:** The app can now start minimized on Windows startup for better user experience.
+* 🌐 **Internet Connection & Offline Status:** Real-time connection status monitoring with visual offline indication.
+* 💾 **Settings Load Persistence:** Settings loaded externally will no longer be lost after closing and reopening the app.
+* ✍️ **Custom Naming for Settings Files:** Users can now choose the filename when saving settings, allowing more flexibility.
+* 📦 **Setup File Added:** Initial installation package created using Inno Setup.
+
+---
+
+### 🔭 Gelecek Sürüm (v2.0 Planları)
+
+* 📊 **Vakit Hatırlatma İstatistikleri:** Kullanıcının kaç vakti kaçırdığı grafiklerle gösterilecek.
+* 🧩 **Esnek Takvim Modülü:** Dini günler ve özel zamanlar için modüler takvim sistemi eklenecek.
+* 📲 **Mobil Sürüm:** Masaüstü uygulamasının mobil uyumlu hafif versiyonu geliştirilecek.
+* 🎚️ **Yeni Tema Seçenekleri:** Klasik, minimal, neon gibi tema çeşitleri sunulacak.
+
+---
+
