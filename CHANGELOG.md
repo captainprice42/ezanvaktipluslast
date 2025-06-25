@@ -38,6 +38,8 @@ Bu belge, Ezan Vakti Plus uygulamasındaki tüm önemli değişiklikleri, yeni �
 * 🌓 **Dark / Light Mode Toggle**: Ability to switch between UI themes.
 * 📁 **Structural Improvements**: More customizable and professional file organization.
 
+---
+
 ## 📦 v1.3 – 2025-06-20
 
 ### 🇹🇷 Türkçe
@@ -76,6 +78,8 @@ Bu belge, Ezan Vakti Plus uygulamasındaki tüm önemli değişiklikleri, yeni �
 * 🔒 **Privacy Mode**: Mutes alerts when the screen is off or logs silently.
 * 📡 **Offline Mode**: App will function using cached data if no connection is available.
 
+---
+
 ## 📦 v1.4 – 2025-06-20
 
 ### 🇹🇷 Türkçe
@@ -113,3 +117,55 @@ Bu belge, Ezan Vakti Plus uygulamasındaki tüm önemli değişiklikleri, yeni �
 * 📊 **Notification & Activity History**: Users will be able to view past and missed notifications within the app.
 * 🎨 **Theme and Dark Mode Enhancements**: Adaptive dark mode and customizable color themes will be added.
 * ⚙️ **Performance and Resource Management Optimization**: Background processes will be optimized to reduce resource consumption.
+
+## 📦 v1.5 – 2025-06-20
+
+### 🇹🇷 Türkçe
+
+* 📖 **Günlük Ayetler Sistemi**: Ana ekrana her gün farklı bir ayet eklenerek ruhani bir dokunuş sağlandı.
+* 💬 **Marquee Bildirim Seçenekleri**: Kayan yazı alanı artık özelleştirilebilir; gösterilecek mesajlar kullanıcı tarafından belirlenebilir.
+* 😊 **Emoji Desteğiyle Arayüz İyileştirmeleri**: Uygulama arayüzüne emojiler eklendi, kullanıcı deneyimi daha sıcak ve etkileşimli hale getirildi.
+* 🧭 **Ayarlar Menüsünde Düzenleme**: Karışıklık yaratan seçenekler yeniden gruplandırıldı ve açıklamalar sadeleştirildi.
+* 🚀 **Performans Optimizasyonu**: Arka plan işlemleri iyileştirildi, açılış süresi ve bellek kullanımı azaltıldı.
+
+### 🇬🇧 English
+
+* 📖 **Daily Verses System**: A new daily verse now appears on the main screen for spiritual enrichment.
+* 💬 **Custom Marquee Notifications**: Users can now customize the scrolling text area with their own messages.
+* 😊 **Emoji-Enhanced UI**: Emojis were added throughout the interface for a more engaging experience.
+* 🧭 **Settings Menu Cleanup**: Settings were reorganized and clarified for a simpler and more intuitive layout.
+* 🚀 **Performance Improvements**: Background processes were optimized to reduce memory usage and launch time.
+
+## 📦 v1.7 – 2025-06-21
+
+### 🇹🇷 Türkçe
+
+* 📖 **Aylık Ayet ve Hadisler**: Her ay başında farklı bir ayet veya hadis görüntüleniyor. Ruhani gelişim için daha kalıcı bir katkı sunuyor.
+* ⏳ **Sonraki Ezan Süresi ve İlerleme Çubuğu**: Ana ekranda, bir sonraki ezana kalan süre dakika olarak gösteriliyor. Ayrıca ilerleme çubuğu ile görsel takip sağlanıyor.
+* 🔁 **Karatay / Meram Geçiş Animasyonu**: İlçe butonları arasında geçiş artık animasyonlu şekilde gerçekleşiyor, deneyim daha yumuşak ve modern hale getirildi.
+* 🧱 **Geliştirilmiş Yapısal Hazırlık**: İleride eklenecek widget ve topluluk sistemlerine altlık oluşturacak yapısal kod düzenlemeleri yapıldı.
+
+---
+
+### 🇬🇧 English
+
+* 📖 **Monthly Verses and Hadiths**: A new verse or hadith appears at the start of each month to support long-term spiritual growth.
+* ⏳ **Next Prayer Countdown and Progress Bar**: Remaining time until the next prayer is now displayed in minutes with a visual progress bar.
+* 🔁 **Karatay / Meram Transition Animation**: Switching between districts now features smooth animations for a more modern interface.
+* 🧱 **Structural Improvements**: Backend changes made to support future features like widgets and community suggestions.
+
+---
+
+## 🔭 Gelecek Sürüm (v1.8 Planları)
+
+### 🇹🇷 Türkçe
+
+* 🔔 **Cuma Mesajı Hatırlatıcısı**: Her Cuma sabahı otomatik olarak ayet veya hadis gösterimi yapılması planlanıyor.
+* 📝 **Günlük Niyet Alanı**: Kullanıcının o günkü hedef veya ruhani niyetlerini yazabileceği bir kişisel not alanı eklenecek.
+* 💬 **Topluluk Tavsiyeleri**: Diğer kullanıcıların önerdiği ayet ve hadislerin anonim olarak ana ekranda görünmesi için altyapı hazırlanıyor.
+
+### 🇬🇧 English
+
+* 🔔 **Friday Message Reminder**: A hadith or verse will be automatically displayed every Friday morning.
+* 📝 **Daily Intention Field**: A space for users to write their spiritual goals or reflections for the day.
+* 💬 **Community Recommendations**: Anonymous user-submitted verses and hadiths will appear in a small section of the main screen.
