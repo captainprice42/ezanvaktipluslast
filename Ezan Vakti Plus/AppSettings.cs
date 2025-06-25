@@ -6,6 +6,8 @@ namespace Ezan_Vakti_Plus
 {
     public class AppSettings
     {
+        public int LastSelectedRegionIndex { get; set; } = 0;
+        public bool StartMinimized { get; set; }
         public bool IsDarkMode { get; set; } = true;
         public bool StartWithWindows { get; set; } = false;
         public int ImsakNotificationMinutes { get; set; } = 15;

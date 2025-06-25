@@ -1,0 +1,65 @@
+﻿<Window x:Class="Ezan_Vakti_Plus.UpdateDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Background="Transparent"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner">
+
+    <!-- Gölge + köşeleri yumuşak ana çerçeve -->
+    <Border Background="#121212"
+            CornerRadius="18"
+            Padding="28"
+            Effect="{StaticResource DialogShadow}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Mesaj -->
+            <TextBlock x:Name="txtMessage"
+                       FontSize="16"
+                       Foreground="White"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,20"/>
+
+            <!-- Butonlar -->
+            <Grid Grid.Row="1" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- EVET (turuncu) -->
+                <Button x:Name="btnYes"
+                        Content="EVET"
+                        Style="{StaticResource FluentButton}"
+                        Background="{StaticResource JetOrange}"
+                        Foreground="Black"
+                        Width="70"
+                        Height="42"
+                        FontSize="16"
+                        Margin="0,0,10,0"
+                        Grid.Column="0"
+                        Click="Yes_Click"/>
+
+                <!-- HAYIR (gri) -->
+                <Button x:Name="btnNo"
+                        Content="HAYIR"
+                        Style="{StaticResource FluentButton}"
+                        Background="#333"
+                        Foreground="White"
+                        Width="70"
+                        Height="42"
+                        FontSize="16"
+                        Margin="10,0,0,0"
+                        Grid.Column="1"
+                        Click="No_Click"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

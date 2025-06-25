@@ -1,4 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using Windows.ApplicationModel.Activation;
+using System.Runtime.InteropServices;
+using CommunityToolkit.WinUI.Notifications;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,6 +22,9 @@ namespace Ezan_Vakti_Plus
         
         
         private const string ProfileFilePath = "profiles/profile.json";
+        private readonly string MainSettingsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "main.json");
+        
+        
 
         // Burada senin önceden verdiğin Karatay ve Meram vakitleri:
         private static readonly Dictionary<int, string[]> KaratayVakitleri = new Dictionary<int, string[]>
@@ -43,7 +49,7 @@ namespace Ezan_Vakti_Plus
             { 17, new string[] { "03:32", "05:20", "12:56", "16:49", "20:21", "22:02" } },
             { 18, new string[] { "03:32", "05:21", "12:56", "16:49", "20:22", "22:02" } },
             { 19, new string[] { "03:32", "05:21", "12:56", "16:49", "20:22", "22:03" } },
-            { 20, new string[] { "03:32", "05:21", "12:57", "16:50", "20:22", "23:59" } },
+            { 20, new string[] { "03:32", "05:21", "12:57", "16:50", "20:22", "22:03" } },
             { 21, new string[] { "03:32", "05:21", "12:57", "16:50", "20:23", "22:03" } },
             { 22, new string[] { "03:32", "05:21", "12:57", "16:50", "20:23", "22:03" } },
             { 23, new string[] { "03:32", "05:22", "12:57", "16:50", "20:23", "22:03" } },
@@ -111,11 +117,15 @@ namespace Ezan_Vakti_Plus
         public MainWindow()
         {
             
+            
+            
             Loaded += async (_, __) => await VersionChecker.CheckAsync(this);
             
 
             
             InitializeComponent();
+            
+            UpdateMonthlyVerse();
 
             currentVakitler = KaratayVakitleri;
             currentActiveButton = btnKaratay;
@@ -140,14 +150,35 @@ namespace Ezan_Vakti_Plus
 
 
         }
+        
+        
+
+        
+        private void LoadLastSelectedRegion()
+        {
+            switch (settings.LastSelectedRegionIndex)
+            {
+                case 0:
+                    btnKaratay_Click(btnKaratay, null);
+                    break;
+                case 1:
+                    btnMeram_Click(btnMeram, null);
+                    break;
+                // Ek bölge varsa onları da buraya ekle
+                default:
+                    btnKaratay_Click(btnKaratay, null);
+                    break;
+            }
+        }
+
 
         private void LoadSettings()
         {
             try
             {
-                if (File.Exists(ProfileFilePath))
+                if (File.Exists(MainSettingsFilePath))
                 {
-                    string json = File.ReadAllText(ProfileFilePath);
+                    string json = File.ReadAllText(MainSettingsFilePath);
                     settings = JsonSerializer.Deserialize<AppSettings>(json) ?? new AppSettings();
                 }
                 else
@@ -166,16 +197,44 @@ namespace Ezan_Vakti_Plus
         {
             try
             {
-                var dir = Path.GetDirectoryName(ProfileFilePath);
-                if (!Directory.Exists(dir))
+                var dir = Path.GetDirectoryName(MainSettingsFilePath);
+                if (!Directory.Exists(dir) && dir != null)
                     Directory.CreateDirectory(dir);
 
                 string json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(ProfileFilePath, json);
+                File.WriteAllText(MainSettingsFilePath, json);
+                Logger.Log("Ayarlar başarıyla kaydedildi.");
             }
             catch
             {
-                // Sessizce devam et
+                // Sessiz devam et
+            }
+        }
+
+// Dışarıdan başka bir ayar dosyası yüklenirse:
+        private void LoadProfileAndSetAsMain(string profilePath)
+        {
+            try
+            {
+                if (!File.Exists(profilePath))
+                    throw new FileNotFoundException("Profil dosyası bulunamadı.", profilePath);
+
+                string json = File.ReadAllText(profilePath);
+                var loadedSettings = JsonSerializer.Deserialize<AppSettings>(json);
+                if (loadedSettings == null)
+                    throw new Exception("Geçersiz ayar dosyası.");
+
+                settings = loadedSettings;
+
+                // Ana ayarlar dosyasına kaydet
+                SaveSettings();
+
+                MessageBox.Show($"Profil '{Path.GetFileName(profilePath)}' yüklendi ve main.json olarak kaydedildi.", 
+                    "Başarılı", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Profil yüklenirken hata oluştu:\n{ex.Message}", "Hata", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -205,6 +264,29 @@ namespace Ezan_Vakti_Plus
                 btnMeram.Foreground = new SolidColorBrush(Color.FromRgb(51, 51, 51));
             }
         }
+        
+        public static class Logger
+        {
+            private static readonly string logDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+
+            public static void Log(string message)
+            {
+                try
+                {
+                    if (!Directory.Exists(logDir))
+                        Directory.CreateDirectory(logDir);
+
+                    string logFile = Path.Combine(logDir, $"log_{DateTime.Now:yyyyMMdd}.txt");
+                    string logLine = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}";
+                    File.AppendAllLines(logFile, new[] { logLine });
+                }
+                catch
+                {
+                    // Hata yansıtma yapma, sessiz devam et
+                }
+            }
+        }
+
 
         private void SetStartup(bool enable)
         {
@@ -224,27 +306,29 @@ namespace Ezan_Vakti_Plus
 
         private void UpdateButtonStyles()
         {
-            if (currentActiveButton == btnKaratay)
-            {
-                btnKaratay.Background = activeBackground;
-                btnKaratay.Foreground = activeForeground;
-                btnMeram.Background = settings.IsDarkMode ? inactiveBackground : lightInactiveBackground;
-                btnMeram.Foreground = settings.IsDarkMode ? inactiveForeground : new SolidColorBrush(Color.FromRgb(51, 51, 51));
-            }
-            else
-            {
-                btnMeram.Background = activeBackground;
-                btnMeram.Foreground = activeForeground;
-                btnKaratay.Background = settings.IsDarkMode ? inactiveBackground : lightInactiveBackground;
-                btnKaratay.Foreground = settings.IsDarkMode ? inactiveForeground : new SolidColorBrush(Color.FromRgb(51, 51, 51));
-            }
+            // Arkaplan daima şeffaf
+            btnKaratay.Background = Brushes.Transparent;
+            btnMeram.Background   = Brushes.Transparent;
+
+            // Sadece yazı rengi değişiyor
+            btnKaratay.Foreground =
+                currentActiveButton == btnKaratay ? Brushes.Black : Brushes.White;
+
+            btnMeram.Foreground =
+                currentActiveButton == btnMeram ? Brushes.Black : Brushes.White;
         }
+
+
 
         private void btnKaratay_Click(object sender, RoutedEventArgs e)
         {
             if (currentActiveButton == btnKaratay) return;
-
             currentActiveButton = btnKaratay;
+
+            settings.LastSelectedRegionIndex = 0; // Karatay index'i
+            SaveSettings(); // AYARI BURADA KAYDET
+
+            AnimateSelectionHighlight(0);
             UpdateButtonStyles();
             AnimatePrayerTimeChange(() => UpdatePrayerTimes(DateTime.Now.Day));
         }
@@ -252,11 +336,53 @@ namespace Ezan_Vakti_Plus
         private void btnMeram_Click(object sender, RoutedEventArgs e)
         {
             if (currentActiveButton == btnMeram) return;
-
             currentActiveButton = btnMeram;
+
+            settings.LastSelectedRegionIndex = 1; // Meram index'i
+            SaveSettings(); // AYARI BURADA KAYDET
+
+            AnimateSelectionHighlight(1);
             UpdateButtonStyles();
             AnimatePrayerTimeChange(() => UpdatePrayerTimes(DateTime.Now.Day));
         }
+
+
+        
+        
+        
+        
+        private readonly Dictionary<int, string> AylarVeAyetler = new Dictionary<int, string>()
+        {
+            { 1, "Allah, kendisiyle birlikte başka ilah olmayan, diridir, kayyumdur. (Bakara, 2:255)" },
+            { 2, "Her kim bir iyilik yaparsa, kendisi için yapmış olur. (Bakara, 2:272)" },
+            { 3, "Peygamberimiz (sav) dedi ki: 'Kolaylaştırınız, zorlaştırmayınız; müjdeleyiniz, nefret ettirmeyiniz.' (Buhari)" },
+            { 4, "Şüphesiz, güçlükle beraber bir kolaylık vardır. (İnşirah, 94:6)" },
+            { 5, "Ey iman edenler! Sabır ve namazla Allah’tan yardım isteyin. (Bakara, 2:153)" },
+            { 6, "İnsanlar için en hayırlı olan, Allah’ın kendilerine vahyettiği kitaba uyan ve salih amel işleyenlerdir. (Bakara, 2:112)" },
+            { 7, "Peygamberimiz (sav) buyurdu: 'Müminin hali, yürüyen bir ağaç gibidir.' (Tirmizi)" },
+            { 8, "İman edenler ve kalpleri Allah’ı anmakla huzur bulanlar... (Ra’d, 13:28)" },
+            { 9, "En hayırlınız, insanlara en faydalı olandır. (Taberani)" },
+            { 10, "Allah’ın rahmeti, iman eden ve salih amel işleyenlere yakındır. (A’raf, 7:56)" },
+            { 11, "Peygamberimiz (sav): 'İlim öğrenmek her Müslüman erkek ve kadın üzerine farzdır.' (İbn Mace)" },
+            { 12, "Allah’ın rahmeti geniştir. O’na tevekkül edenler asla hüsrana uğramazlar. (Hud, 11:56)" }
+        };
+
+        
+
+        private void UpdateMonthlyVerse()
+        {
+            int currentMonth = DateTime.Now.Month;
+            if (AylarVeAyetler.TryGetValue(currentMonth, out string ayet))
+            {
+                marqueeText.Text = ayet;  // monthlyVerseTextBlock UI'da ayet gösteren TextBlock
+            }
+        }
+
+        
+        
+        
+
+
 
         private void UpdatePrayerTimes(int day)
         {
@@ -270,55 +396,119 @@ namespace Ezan_Vakti_Plus
 
             SetPrayerLabels(vakitler);
         }
+        
+        private readonly DoubleAnimation slideAnim = new()
+        {
+            Duration = TimeSpan.FromMilliseconds(180),   // hızlı ama sarsmıyor
+            EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
+        };
+        
+        private void MoveHighlight(Button target)
+        {
+            double targetX = target == btnKaratay ? 0 : 140; // buton genişliği
+            slideAnim.To = targetX;
+            highlightTT.BeginAnimation(TranslateTransform.XProperty, slideAnim);
+        }
+
+
 
         private void SetPrayerLabels(string[] vakitler)
+{
+    // Namaz isimleri sıralı
+    string[] namazlar = { "İmsak", "Güneş", "Öğle", "İkindi", "Akşam", "Yatsı" };
+
+    // Etiketleri bir listeye alalım ki dinamik ayarlayalım
+    var labels = new TextBlock[] { imsakLabel, gunesLabel, ogleLabel, ikindiLabel, aksamLabel, yatsiLabel };
+
+    DateTime now = DateTime.Now;
+    int nextPrayerIndex = -1;
+
+    // Hangi vaktin gelecekte olduğunu bul
+    for (int i = 0; i < vakitler.Length; i++)
+    {
+        if (!TimeSpan.TryParse(vakitler[i], out var time))
+            continue;
+
+        DateTime vakitDateTime = now.Date + time;
+
+        if (vakitDateTime > now)
         {
-            // Namaz isimleri sıralı
-            string[] namazlar = { "İmsak", "Güneş", "Öğle", "İkindi", "Akşam", "Yatsı" };
-    
-            // Etiketleri bir listeye alalım ki dinamik ayarlayalım
-            var labels = new TextBlock[] { imsakLabel, gunesLabel, ogleLabel, ikindiLabel, aksamLabel, yatsiLabel };
-
-            DateTime now = DateTime.Now;
-            int nextPrayerIndex = -1;
-
-            // Hangi vaktin gelecekte olduğunu bul
-            for (int i = 0; i < vakitler.Length; i++)
-            {
-                if (!TimeSpan.TryParse(vakitler[i], out var time))
-                    continue;
-
-                DateTime vakitDateTime = now.Date + time;
-
-                if (vakitDateTime > now)
-                {
-                    nextPrayerIndex = i;
-                    break;
-                }
-            }
-
-            for (int i = 0; i < vakitler.Length; i++)
-            {
-                string text = $"{namazlar[i]}: {vakitler[i]}";
-                labels[i].Text = text;
-
-                if (i == nextPrayerIndex)
-                {
-                    // Bir sonraki vakit: sarı (örneğin #DD6F00)
-                    labels[i].Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFA500"));
-                }
-                else if (i < nextPrayerIndex || nextPrayerIndex == -1)
-                {
-                    // Geçmiş vakitler beyaz (veya ayarladığın normal renk)
-                    labels[i].Foreground = Brushes.White;
-                }
-                else
-                {
-                    // Gelecek vakitler normal tema renginde (örneğin gri veya siyah)
-                    labels[i].Foreground = settings.IsDarkMode ? Brushes.Gray : new SolidColorBrush(Color.FromRgb(51, 51, 51));
-                }
-            }
+            nextPrayerIndex = i;
+            break;
         }
+    }
+
+    for (int i = 0; i < vakitler.Length; i++)
+    {
+        string text = $"{namazlar[i]}: {vakitler[i]}";
+        labels[i].Text = text;
+
+        if (i == nextPrayerIndex)
+        {
+            // Bir sonraki vakit: sarı (örneğin #FFA500)
+            labels[i].Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFA500"));
+        }
+        else if (i < nextPrayerIndex || nextPrayerIndex == -1)
+        {
+            // Geçmiş vakitler beyaz (veya ayarladığın normal renk)
+            labels[i].Foreground = Brushes.White;
+        }
+        else
+        {
+            // Gelecek vakitler normal tema renginde (örneğin gri veya siyah)
+            labels[i].Foreground = settings.IsDarkMode ? Brushes.Gray : new SolidColorBrush(Color.FromRgb(51, 51, 51));
+        }
+    }
+
+    UpdateProgressBar(vakitler, nextPrayerIndex);
+}
+
+private void UpdateProgressBar(string[] vakitler, int nextPrayerIndex)
+{
+    DateTime now = DateTime.Now;
+    DateTime nextPrayerTime;
+    DateTime previousPrayerTime;
+
+    if (nextPrayerIndex == -1)
+    {
+        // Eğer sonraki vakit yoksa, gece yarısından sonra ilk vakte geçiş
+        nextPrayerTime = now.Date.AddDays(1) + TimeSpan.Parse(vakitler[0]);
+        previousPrayerTime = now.Date + TimeSpan.Parse(vakitler[vakitler.Length - 1]);
+    }
+    else
+    {
+        nextPrayerTime = now.Date + TimeSpan.Parse(vakitler[nextPrayerIndex]);
+        previousPrayerTime = nextPrayerIndex > 0
+            ? now.Date + TimeSpan.Parse(vakitler[nextPrayerIndex - 1])
+            : now.Date;
+    }
+
+    var totalInterval = nextPrayerTime - previousPrayerTime;
+    var elapsed = now - previousPrayerTime;
+
+    double progressPercentage = 0;
+
+    if (totalInterval.TotalSeconds > 0)
+        progressPercentage = Math.Max(0, Math.Min(1, elapsed.TotalSeconds / totalInterval.TotalSeconds));
+
+    progressBar.Value = progressPercentage * 100;
+}
+
+private void AnimateSelectionHighlight(int targetIndex)
+{
+    double targetX = targetIndex * 140; // 140: buton genişliği + margin, sen kendi grid yapına göre ayarla
+    
+    var anim = new DoubleAnimation
+    {
+        To = targetX,
+        Duration = TimeSpan.FromMilliseconds(400),
+        EasingFunction = new CubicEase { EasingMode = EasingMode.EaseInOut }
+    };
+
+    highlightTT.BeginAnimation(TranslateTransform.XProperty, anim);
+}
+
+
 
 
         private void SetPrayerLabels(string defaultText)

@@ -48,6 +48,55 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <Style x:Key="DialogButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4285F4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
+        <DropShadowEffect x:Key="DialogShadow" BlurRadius="20" ShadowDepth="0" 
+                          Color="#80000000" Opacity="0.5"/>
+        
+        
+        <!-- Modern Close Button Style -->
+        <Style x:Key="ModernCloseButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent">
+                            <Grid Width="30" Height="30">
+                                <Ellipse x:Name="circle" Fill="#11FFFFFF" Stroke="#55FFFFFF" StrokeThickness="1"/>
+                                <Path x:Name="cross" Data="M8,8 L22,22 M8,22 L22,8" 
+                                      Stroke="White" StrokeThickness="2" 
+                                      StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="circle" Property="Fill" Value="#44FF0000"/>
+                                <Setter TargetName="cross" Property="Stroke" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <SolidColorBrush x:Key="JetOrange" Color="#FFDD6F00"/>
+        
     </Application.Resources>
 </Application>

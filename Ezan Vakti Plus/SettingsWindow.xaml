@@ -2,18 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Ayarlar"
-        Height="400" Width="360"
+        Height="420" Width="360"
         Background="#121212"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        FontFamily="Segoe UI"
+        FontFamily="Segoe UI"
         WindowStyle="None"
         AllowsTransparency="True"
         Loaded="Window_Loaded"
         Closing="Window_Closing">
 
-    <!-- ========== RESOURCES (değişmedi) ========== -->
     <Window.Resources>
+        <!-- Fade In/Out Storyboardlar -->
         <Storyboard x:Key="FadeInStoryboard">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                              From="0" To="1"
@@ -32,7 +32,7 @@
 
         <DropShadowEffect x:Key="DepthShadow" BlurRadius="12" ShadowDepth="0" Opacity="0.45"/>
 
-        <!-- Modern NeoCheckBox Style -->
+        <!-- NeoCheckBox Style (aynı senin verdiğin) -->
         <Style x:Key="NeoCheckBox" TargetType="CheckBox">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -82,27 +82,28 @@
         </Style>
     </Window.Resources>
 
-    <!-- ========== UI ========== -->
     <Border x:Name="MainGrid" Background="{StaticResource CardBackground}"
             CornerRadius="18" Padding="24" Opacity="0">
         <Grid>
-            <!-- Satırlar: Başlık, Bildirim, Kaydet/Yükle, Startup, Spacer, Tamam -->
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/> <!-- Başlık -->
+                <RowDefinition Height="Auto"/> <!-- Bildirim Butonu -->
+                <RowDefinition Height="Auto"/> <!-- Kaydet/Yükle Butonları -->
+                <RowDefinition Height="Auto"/> <!-- Başlatma CheckBox -->
+                <RowDefinition Height="Auto"/> <!-- Minimize Başlat CheckBox (fade ile gizlenebilir) -->
+                <RowDefinition Height="*"/>    <!-- Boşluk -->
+                <RowDefinition Height="28"/>   <!-- İnternet durumu (sol alt) -->
+                <RowDefinition Height="Auto"/> <!-- Tamam butonu -->
             </Grid.RowDefinitions>
 
-            <!-- Başlık (ortada) -->
-            <TextBlock Text="Ayarlar"
+            <!-- Başlık -->
+            <TextBlock Grid.Row="0" Text="Ayarlar"
                        FontSize="28" FontWeight="Bold"
                        Foreground="White"
                        HorizontalAlignment="Center"/>
 
-            <!-- Bildirim Ayarları (büyük, ortada, sarı) -->
+            <!-- Bildirim Ayarları Butonu -->
             <Button x:Name="NotificationSettingsButton" Grid.Row="1"
                     Width="200" Height="42"
                     Style="{StaticResource FluentButton}"
@@ -116,7 +117,7 @@
                 </StackPanel>
             </Button>
 
-            <!-- Kaydet ve Yükle (yan yana) -->
+            <!-- Kaydet/Yükle Butonları -->
             <Grid Grid.Row="2" Margin="0,18,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -147,16 +148,34 @@
                     </StackPanel>
                 </Button>
             </Grid>
-            
-            <CheckBox x:Name="StartupCheckBox" Grid.Row="4"
+
+            <!-- Bilgisayar açıldığında başlat -->
+            <CheckBox x:Name="StartupCheckBox" Grid.Row="3"
                       Content="Bilgisayar açıldığında başlat"
-                      Margin="0,81,0,0"
+                      Margin="0,25,0,0"
                       Style="{StaticResource NeoCheckBox}"
                       HorizontalAlignment="Center"
                       Checked="StartupCheckBox_Checked"
                       Unchecked="StartupCheckBox_Unchecked"/>
-            <!-- “Tamam” butonu – metin + ikon -->
-            <Button Grid.Row="5" Width="140" Height="46"
+
+            <!-- Minimize halde başlat (Başlat tikliyse görünür, animasyonlu) -->
+            <CheckBox x:Name="MinimizeStartupCheckBox" Grid.Row="4"
+                      Content="Minimize halde başlat"
+                      Margin="0,8,0,0"
+                      Style="{StaticResource NeoCheckBox}"
+                      HorizontalAlignment="Center"
+                      Opacity="0" Visibility="Collapsed"
+                      Checked="MinimizeStartupCheckBox_Checked"
+                      Unchecked="MinimizeStartupCheckBox_Unchecked"/>
+
+            <!-- İnternet durumu sol altta, gridin en altında -->
+            <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0">
+                <Image x:Name="InternetStatusIcon" Width="18" Height="18" Margin="0,0,6,0"/>
+                <TextBlock x:Name="InternetStatusText" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="White"/>
+            </StackPanel>
+
+            <!-- Tamam Butonu (Sabit konum) -->
+            <Button Grid.Row="7" Width="140" Height="46"
                     Style="{StaticResource FluentButton}"
                     HorizontalAlignment="Center" Margin="0,20,0,0"
                     Click="OKButton_Click">
@@ -166,6 +185,7 @@
                            Width="18" Height="18" Margin="6,0,0,0"/>
                 </StackPanel>
             </Button>
+
         </Grid>
     </Border>
 </Window>

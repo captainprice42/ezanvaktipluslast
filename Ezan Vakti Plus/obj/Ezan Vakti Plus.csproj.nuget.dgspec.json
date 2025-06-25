@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\destr\\RiderProjects\\ezanvaktipluslast\\Ezan Vakti Plus\\Ezan Vakti Plus.csproj": {
-      "version": "1.5.0",
+      "version": "1.9.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\destr\\RiderProjects\\ezanvaktipluslast\\Ezan Vakti Plus\\Ezan Vakti Plus.csproj",
         "projectName": "Ezan Vakti Plus",
@@ -46,6 +46,10 @@
         "net7.0-windows10.0.19041": {
           "targetAlias": "net7.0-windows10.0.19041.0",
           "dependencies": {
+            "CommunityToolkit.WinUI.Notifications": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
             "Microsoft.NET.ILLink.Analyzers": {
               "suppressParent": "All",
               "target": "Package",
