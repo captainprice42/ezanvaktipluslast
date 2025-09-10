@@ -32,18 +32,6 @@ It includes countdowns, audio-visual notifications, and offline support to ensur
 
 ---
 
-### 📦 Son Sürüm
-
-📌 **Ezan Vakti Plus v2.1**
-
-* Yeni namaz vakti verileri
-* Performans optimizasyonları
-* Daha akıcı modern arayüz
-
-📖 [Tüm değişim günlüğü için buraya bak](./CHANGELOG.md)
-
----
-
 ### 🖥️ Teknolojiler
 
 [![C# Badge](https://img.shields.io/badge/-C%23-239120?style=for-the-badge\&logo=c-sharp\&logoColor=white)](#)
