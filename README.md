@@ -1,42 +1,72 @@
-**Türkçe Açıklama:**
+## Hi I'm Hamza <img src="https://user-images.githubusercontent.com/1303154/88677602-1635ba80-d120-11ea-84d8-d263ba5fc3c0.gif" width="28px" height="28px" alt="hi">
 
-Bu masaüstü uygulaması, kullanıcılara Türkiye şartlarına uygun, günlük namaz vakitlerini gerçek zamanlı olarak sunar. Namaz vakitlerini otomatik olarak günceller, her vakit için geriye sayım yapar ve yaklaşan namazlar için görsel bildirimlerin yanında sesli uyarılar oynatır. Böylece kullanıcı, ibadet zamanlarını kesinlikle kaçırmaz.
+Building [Ezan Vakti Plus](#) ⚡️
 
-Uygulama, kullanımı kolay arayüzü sayesinde herkesin hızlıca namaz vakitlerini görmesini sağlar. Güncel vakit verileri, dinamik olarak gün bazında işlenir ve uygulama çalışma süresi boyunca anlık olarak kontrol edilir. Bildirimler, vakitlere 15 dakika kala tetiklenerek kullanıcının hazırlıklı olmasını sağlar.
+I'm **Hamza (captain\_price24)**, a desktop application developer. I spend most of my time coding useful tools like **Ezan Vakti Plus**, a modern prayer time tracker designed for Turkey.
 
-Projede C# ve .NET Windows Forms teknolojileri kullanılmıştır. Kod, okunabilir ve modüler olacak şekilde yazılmıştır, böylece geliştiriciler kolayca kendi ihtiyaçlarına göre genişletebilir veya özelleştirebilir.
-
-Özellikler:
-
-* Günlük namaz vakitlerini otomatik güncelleme ve gösterme
-* Her vakit için geriye sayım ve süre takibi
-* Vakitlere 15 dakika kala sesli ve görsel bildirimler
-* Basit ve sezgisel kullanıcı arayüzü
-* Kolayca özelleştirilebilir ve genişletilebilir kod yapısı
-
-Bu uygulama, ibadet düzenini dijital ortamda takip etmek isteyenler için tasarlanmıştır ve açık kaynak olarak geliştirilmektedir.
+Learn how I built it and try it yourself 👇
 
 ---
 
+### 📌 Ezan Vakti Plus
+
+**Türkçe Açıklama:**
+Ezan Vakti Plus, Türkiye şartlarına uygun günlük namaz vakitlerini **gerçek zamanlı** olarak gösteren bir masaüstü uygulamasıdır.
+Her vakit için **geri sayım**, **sesli & görsel bildirimler** ve **çevrimdışı kullanım** özellikleriyle ibadet zamanlarını kaçırmazsınız.
+
 **English Description:**
+Ezan Vakti Plus is a **real-time daily prayer time desktop app** tailored for Turkey.
+It includes countdowns, audio-visual notifications, and offline support to ensure you never miss your prayer times.
 
-This desktop application provides real-time daily prayer times tailored for users in Turkey. It automatically updates prayer times, offers countdown timers for each prayer, and plays audio-visual notifications when a prayer time is approaching, ensuring the user never misses their worship schedule.
+---
 
-Designed with an easy-to-use interface, the app allows users to quickly view prayer times. Prayer time data is dynamically processed on a daily basis and monitored continuously while the application runs. Notifications trigger 15 minutes before each prayer to give users ample preparation time.
+### ✨ Özellikler
 
-Built with C# and .NET Windows Forms, the codebase is clean and modular, allowing developers to easily customize or extend the application according to their needs.
+* 🔄 Günlük namaz vakitlerini otomatik güncelleme
+* ⏳ Her vakit için geriye sayım ve süre takibi
+* 🔔 15 dakika önce sesli & görsel bildirim
+* 📡 Çevrimdışı çalışma desteği
+* 🎨 Modern WPF arayüzü (JetBrains Rider ile geliştirilmiş)
+* 💾 Ayarları yedekleme & geri yükleme desteği
+* 🪟 Sistem açılışında otomatik başlatma desteği
 
-Features:
+---
 
-* Automatic daily prayer times update and display
-* Countdown timers for each prayer time
-* Audio and visual notifications 15 minutes prior to prayer times
-* Simple and intuitive user interface
-* Easily customizable and extensible code structure
+### 🖥️ Teknolojiler
 
-This project is open source and aims to support individuals who want to digitally track their daily worship routines.
+[![C# Badge](https://img.shields.io/badge/-C%23-239120?style=for-the-badge\&logo=c-sharp\&logoColor=white)](#)
+[![WPF Badge](https://img.shields.io/badge/-WPF-512BD4?style=for-the-badge\&logo=windows\&logoColor=white)](#)
+[![JetBrains Rider Badge](https://img.shields.io/badge/-JetBrains%20Rider-000000?style=for-the-badge\&logo=jetbrains\&logoColor=white)](#)
 
+---
 
-## 📄 Belgeler / Documents
+### 📬 Reach me out!
 
-- [🆕 Değişim Günlüğü / Change Log](./CHANGELOG.md)
+[![YouTube Badge](https://img.shields.io/badge/-YouTube-e74c3c?style=flat\&logo=youtube\&logoColor=white\&link=https://youtube.com/@captain_price24)](https://youtube.com/@captain_price24)
+[![Discord Badge](https://img.shields.io/badge/-Discord-5865F2?style=flat\&logo=discord\&logoColor=white\&link=https://discord.com/captain_price24)](https://discord.com/captain_price24)
+[![Github Badge](https://img.shields.io/badge/-GitHub-181717?style=flat\&logo=github\&logoColor=white\&link=https://github.com/captainprice42)](https://github.com/captainprice42)
+[![Mail Badge](https://img.shields.io/badge/-Mail-c0392b?style=flat\&logo=gmail\&logoColor=white\&link=mailto\:captain_price24.relic102@passinbox.com)](mailto:captain_price24.relic102@passinbox.com)
+
+---
+
+### 📊 Stats
+
+![captain\_price42's github stats](https://github-readme-stats.vercel.app/api?username=captainprice42\&count_private=true\&theme=tokyonight\&hide=contribs,prs)
+
+---
+
+🔥 **Ezan Vakti Plus – Namaz vakitlerini dijital ortamda en kolay şekilde takip edin!**
+
+---
+
+### 📦 Son Sürüm
+
+📌 **Ezan Vakti Plus v2.1**
+
+* Yeni namaz vakti verileri
+* Performans optimizasyonları
+* Daha akıcı modern arayüz
+
+👉 **[📥 Buradan indir](https://github.com/captainprice42/ezanvaktipluslast/releases/latest)**
+
+📖 [🆕 Değişim Günlüğü / Change Log](./CHANGELOG.md)
