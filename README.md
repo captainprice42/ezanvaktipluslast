@@ -32,6 +32,22 @@ It includes countdowns, audio-visual notifications, and offline support to ensur
 
 ---
 
+### ⚙️ Nasıl Kurulur? / How to Install?
+
+#### 🛠️ Seçenek 1: Kurulum Dosyası (Setup - EXE)
+
+* **TR:** **[Releases](https://github.com/captainprice42/ezanvaktipluslast/releases/latest)** sayfasından `.exe` kurulum dosyasını indirin ve çalıştırın. Inno Setup sihirbazı kurulumu otomatik tamamlayacaktır.
+* **EN:** Download the `.exe` setup file from the **[Releases](https://github.com/captainprice42/ezanvaktipluslast/releases/latest)** page and run it. The Inno Setup wizard will complete the installation automatically.
+
+#### 📦 Seçenek 2: Arşiv Dosyaları (RAR / ZIP)
+
+* **TR:** Eğer kurulum yapmak istemiyorsanız, `.rar` veya `.zip` dosyasını indirin. Dosyaları bir klasöre çıkartın ve `Ezan Vakti Plus.exe` dosyasını çalıştırın.
+* **EN:** If you prefer not to install, download the `.rar` or `.zip` file. Extract the files to a folder and run `Ezan Vakti Plus.exe` directly.
+
+---
+
+
+
 ### 🖥️ Teknolojiler
 
 [![C# Badge](https://img.shields.io/badge/-C%23-239120?style=for-the-badge\&logo=c-sharp\&logoColor=white)](#)
@@ -70,3 +86,6 @@ It includes countdowns, audio-visual notifications, and offline support to ensur
 👉 **[📥 Buradan indir](https://github.com/captainprice42/ezanvaktipluslast/releases/latest)**
 
 📖 [🆕 Değişim Günlüğü / Change Log](./CHANGELOG.md)
+
+
+
