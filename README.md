@@ -61,7 +61,7 @@ It includes countdowns, audio-visual notifications, and offline support to ensur
 
 ### 📦 Son Sürüm
 
-📌 **Ezan Vakti Plus v2.1**
+📌 **Ezan Vakti Plus v2.2**
 
 * Yeni namaz vakti verileri
 * Performans optimizasyonları
